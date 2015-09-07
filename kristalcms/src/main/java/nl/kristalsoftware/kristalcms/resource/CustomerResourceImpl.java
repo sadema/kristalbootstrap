@@ -1,6 +1,6 @@
-package nl.kristalsoftware.jaxrstest.resource;
+package nl.kristalsoftware.kristalcms.resource;
 
-import nl.kristalsoftware.jaxrstest.data.Customer;
+import nl.kristalsoftware.kristalcms.data.Customer;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 

@@ -1,4 +1,4 @@
-package nl.kristalsoftware.jaxrstest.data;
+package nl.kristalsoftware.kristalcms.data;
 
 import org.jboss.resteasy.links.RESTServiceDiscovery;
 

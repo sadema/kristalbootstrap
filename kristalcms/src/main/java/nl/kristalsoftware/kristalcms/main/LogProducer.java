@@ -1,4 +1,4 @@
-package nl.kristalsoftware.jaxrstest.main;
+package nl.kristalsoftware.kristalcms.main;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;

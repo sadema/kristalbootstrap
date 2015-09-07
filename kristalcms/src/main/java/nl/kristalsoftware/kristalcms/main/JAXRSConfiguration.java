@@ -1,6 +1,5 @@
-package nl.kristalsoftware.jaxrstest.main;
+package nl.kristalsoftware.kristalcms.main;
 
-import javax.annotation.ManagedBean;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
