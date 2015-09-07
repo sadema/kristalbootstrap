@@ -15,7 +15,7 @@ import javax.ws.rs.core.UriInfo;
  * Created by sjoerdadema on 08-09-15.
  */
 @Path("/cms")
-@Produces("application/xml")
+@Produces("application/json,application/xml")
 public interface ICustomerResource {
 
     @AddLinks

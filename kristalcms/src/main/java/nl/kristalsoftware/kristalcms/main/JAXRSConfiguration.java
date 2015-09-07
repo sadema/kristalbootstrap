@@ -9,7 +9,6 @@ import javax.ws.rs.core.Application;
  *
  * @author airhacks.com
  */
-//@ManagedBean
 @ApplicationPath("resources")
 public class JAXRSConfiguration extends Application {
 }
