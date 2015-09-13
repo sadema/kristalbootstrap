@@ -7,9 +7,10 @@ import javax.xml.bind.annotation.*;
 /**
  * Created by sjoerdadema on 07-09-15.
  */
+//@NoJackson
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlRootElement
-public class Customer {
+public class CustomerData {
 
     @XmlID
     @XmlAttribute(name="id")
@@ -21,9 +22,9 @@ public class Customer {
     @XmlElementRef
     private RESTServiceDiscovery rest;
 
-    public Customer() {}
+    public CustomerData() {}
 
-    public Customer(String customerId) {
+    public CustomerData(String customerId) {
         nodename = customerId;
     }
 }
