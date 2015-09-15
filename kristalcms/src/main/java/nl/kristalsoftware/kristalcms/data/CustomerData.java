@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.*;
 /**
  * Created by sjoerdadema on 07-09-15.
  */
-//@NoJackson
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlRootElement
 public class CustomerData {
@@ -26,5 +25,13 @@ public class CustomerData {
 
     public CustomerData(String customerId) {
         nodename = customerId;
+    }
+
+    public String getNodename() {
+        return nodename;
+    }
+
+    public void setNodename(String nodename) {
+        this.nodename = nodename;
     }
 }

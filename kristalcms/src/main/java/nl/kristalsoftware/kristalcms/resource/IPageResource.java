@@ -19,12 +19,21 @@ import javax.ws.rs.core.UriInfo;
  */
 @Path("/cms")
 @Produces("application/json,application/xml")
-public interface ICustomerResource {
+public interface IPageResource {
+
+    @AddLinks
+    @LinkResources({
+            @LinkResource,
+            @LinkResource(value = CustomerData.class, rel = "pages")
+    })
+    @GET
+    @Path("{customerId}/pages")
+    PagesData getPages(@PathParam("customerId") String customerId, @Context UriInfo uriInfo);
 
     @AddLinks
     @LinkResource
     @GET
-    @Path("{customerId}")
-    CustomerData getCustomer(@PathParam("customerId") String customerId, @Context UriInfo uriInfo);
+    @Path("{customerId}/pages/{pageId}")
+    PageData getPage(@PathParam("customerId") String customerId, @PathParam("pageId") String pageId, @Context UriInfo uriInfo);
 
 }

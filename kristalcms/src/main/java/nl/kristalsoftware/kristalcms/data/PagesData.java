@@ -4,30 +4,30 @@ import org.jboss.resteasy.links.ParentResource;
 import org.jboss.resteasy.links.RESTServiceDiscovery;
 
 import javax.xml.bind.annotation.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by sjoerdadema on 10-07-15.
  */
 @XmlAccessorType(XmlAccessType.NONE)
-@XmlRootElement(name="page")
-public class PageData {
+@XmlRootElement(name="pages")
+public class PagesData {
 
     @ParentResource
     private CustomerData customer;
 
-    @XmlID
-    @XmlAttribute(name="id")
-    private String nodename;
+    private String nodename = "pages";
 
-    @XmlElement(name="content")
-    private String pageContent;
+    @XmlElement(name="page")
+    private List<PageData> pageList = new ArrayList<PageData>();
 
     @XmlElementRef
     private RESTServiceDiscovery rest;
 
-    public PageData() {}
+    public PagesData() {}
 
-    public PageData(CustomerData customer) {
+    public PagesData(CustomerData customer) {
         this.customer = customer;
     }
 
@@ -43,15 +43,11 @@ public class PageData {
         return nodename;
     }
 
-    public void setNodename(String nodename) {
-        this.nodename = nodename;
+    public List<PageData> getPageList() {
+        return pageList;
     }
 
-    public String getPageContent() {
-        return pageContent;
-    }
-
-    public void setPageContent(String pageContent) {
-        this.pageContent = pageContent;
+    public void setPageList(List<PageData> pageList) {
+        this.pageList = pageList;
     }
 }
