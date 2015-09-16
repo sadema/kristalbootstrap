@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.*;
  * Created by sjoerdadema on 07-09-15.
  */
 @XmlAccessorType(XmlAccessType.NONE)
-@XmlRootElement
+@XmlRootElement(name = "customer")
 public class CustomerData {
 
     @XmlID
