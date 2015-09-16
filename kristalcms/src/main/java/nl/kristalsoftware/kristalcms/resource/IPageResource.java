@@ -7,11 +7,9 @@ import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import org.jboss.resteasy.links.LinkResources;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 /**
@@ -35,5 +33,10 @@ public interface IPageResource {
     @GET
     @Path("{customerId}/pages/{pageId}")
     PageData getPage(@PathParam("customerId") String customerId, @PathParam("pageId") String pageId, @Context UriInfo uriInfo);
+
+    @LinkResource(value = PagesData.class)
+    @POST
+    @Path("{customerId}/pages")
+    Response createPage(@PathParam("customerId") String customerId, PageData pageData, @Context UriInfo uriInfo);
 
 }

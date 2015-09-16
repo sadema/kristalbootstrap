@@ -16,16 +16,15 @@ public class StringJcrProperty implements JcrProperty<String> {
     private Logger logger;
 
     @Override
-    public String getData(Node node, String propertyName) {
-        String value = "";
+    public String getPropertyValue(Node node, String propertyName) throws RepositoryException{
+        String value = null;
         try {
             value = node.getProperty(propertyName).getString();
         } catch(PathNotFoundException e) {
-            logger.info("Property version does not exist");
+            logger.info("Property " + propertyName + " does not exist");
         } catch (ValueFormatException e) {
-            e.printStackTrace();
-        } catch (RepositoryException e) {
-            e.printStackTrace();
+            logger.severe(e.getMessage());
+            throw new RepositoryException(e);
         }
         return value;
     }

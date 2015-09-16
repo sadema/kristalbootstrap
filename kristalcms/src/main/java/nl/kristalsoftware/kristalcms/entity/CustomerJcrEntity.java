@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * Created by sjoerdadema on 16-09-15.
  */
 @RequestScoped
-public class CustomerJcrEntity implements BaseJcrEntity<CustomerData> {
+public class CustomerJcrEntity implements IBaseJcrEntity<CustomerData> {
 
     @Inject
     private Logger logger;
@@ -30,14 +30,26 @@ public class CustomerJcrEntity implements BaseJcrEntity<CustomerData> {
     private JcrProperty<String> city;
 
     @Override
-    public CustomerData getData(String path) {
-        try {
-            Node node = session.getNode(path);
-            customerData.setNodename(node.getName());
-            customerData.setVersion(version.getData(node, "version"));
-            customerData.setCity(city.getData(node, "city"));
-        } catch (RepositoryException e) {
-        }
+    public CustomerData getData(String path) throws PathNotFoundException, RepositoryException {
+        Node node = session.getNode(path);
+        this.setDataFromJcrValues(node);
         return customerData;
+    }
+
+    @Override
+    public String setData(String parentPath, CustomerData entity) throws PathNotFoundException, ItemExistsException, RepositoryException {
+        return null;
+    }
+
+    @Override
+    public void setDataFromJcrValues(Node node) throws PathNotFoundException, RepositoryException {
+        customerData.setNodename(node.getName());
+        customerData.setVersion(version.getPropertyValue(node, "version"));
+        customerData.setCity(city.getPropertyValue(node, "city"));
+    }
+
+    @Override
+    public void setJcrValuesFromData(Node node) throws PathNotFoundException, RepositoryException {
+
     }
 }
