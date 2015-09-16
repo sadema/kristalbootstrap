@@ -11,6 +11,9 @@
         <sv:property sv:name="version" sv:type="String">
             <sv:value>1.0</sv:value>
         </sv:property>
+        <sv:property sv:name="city" sv:type="String">
+            <sv:value>Nunspeet</sv:value>
+        </sv:property>
         <sv:node sv:name="templates">
             <sv:property sv:name="jcr:primaryType" sv:type="Name">
                 <sv:value>nt:unstructured</sv:value>
@@ -28,6 +31,9 @@
         </sv:property>
         <sv:property sv:name="version" sv:type="String">
             <sv:value>1.0</sv:value>
+        </sv:property>
+        <sv:property sv:name="city" sv:type="String">
+            <sv:value>Apeldoorn</sv:value>
         </sv:property>
         <sv:node sv:name="templates">
             <sv:property sv:name="jcr:primaryType" sv:type="Name">

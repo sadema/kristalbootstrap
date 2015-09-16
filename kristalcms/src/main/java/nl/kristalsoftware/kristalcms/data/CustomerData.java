@@ -16,7 +16,10 @@ public class CustomerData {
     private String nodename;
 
     @XmlElement
-    private String city = "Nunspeet";
+    private String version;
+
+    @XmlElement
+    private String city;
 
     @XmlElementRef
     private RESTServiceDiscovery rest;
@@ -33,5 +36,21 @@ public class CustomerData {
 
     public void setNodename(String nodename) {
         this.nodename = nodename;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
     }
 }

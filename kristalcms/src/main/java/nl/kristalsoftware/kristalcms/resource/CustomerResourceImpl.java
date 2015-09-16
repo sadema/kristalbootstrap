@@ -1,6 +1,7 @@
 package nl.kristalsoftware.kristalcms.resource;
 
 import nl.kristalsoftware.kristalcms.data.CustomerData;
+import nl.kristalsoftware.kristalcms.entity.BaseJcr;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -21,15 +22,10 @@ public class CustomerResourceImpl implements ICustomerResource {
     private Logger logger;
 
     @Inject
-    private Session session;
+    private BaseJcr<CustomerData> customerJcr;
 
     public CustomerData getCustomer(String customerId, @Context UriInfo uriInfo) {
         logger.info(uriInfo.getPath());
-        try {
-            Node node = session.getNode(uriInfo.getPath());
-        } catch (RepositoryException e) {
-        }
-        System.out.println(uriInfo.getPath());
-        return new CustomerData(customerId);
+        return customerJcr.getData(uriInfo.getPath());
     }
 }
