@@ -30,10 +30,17 @@ public class PageJcrEntity extends BaseJcrEntity implements IBaseJcrEntity<PageD
     }
 
     @Override
-    public String setData(String parentPath, PageData entity) throws PathNotFoundException, ItemExistsException, RepositoryException {
+    public String setData(String parentPath, PageData data) throws PathNotFoundException, ItemExistsException, RepositoryException {
         String newPath = null;
-        if (!nodeExists(session, buildPath(parentPath, entity.getNodename()))) {
-
+        Node node = session.getNode(parentPath);
+        if (!nodeExists(session, buildPath(parentPath, data.getNodename()))) {
+            Node pageNode = node.addNode(data.getNodename(), "nt:file");
+            newPath = pageNode.getPath();
+            this.setJcrValuesFromData(pageNode, data);
+            session.save();
+        }
+        else {
+            throw new ItemExistsException("Node " + data.getNodename() + " already exists");
         }
         return newPath;
     }
@@ -45,7 +52,7 @@ public class PageJcrEntity extends BaseJcrEntity implements IBaseJcrEntity<PageD
     }
 
     @Override
-    public void setJcrValuesFromData(Node node) throws PathNotFoundException, RepositoryException {
-
+    public void setJcrValuesFromData(Node node, PageData data) throws PathNotFoundException, RepositoryException {
+        content.setPropertyValue(node, "content", data.getPageContent());
     }
 }

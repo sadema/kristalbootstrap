@@ -23,6 +23,39 @@
             <sv:property sv:name="jcr:primaryType" sv:type="Name">
                 <sv:value>nt:unstructured</sv:value>
             </sv:property>
+            <sv:node sv:name="home">
+                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                    <sv:value>nt:file</sv:value>
+                </sv:property>
+                <sv:property sv:name="jcr:createdBy" sv:type="String">
+                    <sv:value>&lt;anonymous&gt;</sv:value>
+                </sv:property>
+                <sv:property sv:name="jcr:created" sv:type="Date">
+                    <sv:value>2015-08-17T19:14:02.092+02:00</sv:value>
+                </sv:property>
+                <sv:node sv:name="jcr:content">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>nt:resource</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="jcr:lastModifiedBy" sv:type="String">
+                        <sv:value>&lt;anonymous&gt;</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="jcr:encoding" sv:type="String">
+                        <sv:value>UTF-8</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="jcr:mimeType" sv:type="String">
+                        <sv:value>text/html</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="jcr:lastModified" sv:type="Date">
+                        <sv:value>2015-08-17T19:14:02.092+02:00</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="jcr:data" sv:type="Binary">
+                        <sv:value>
+                            PGh0bWw+PGhlYWQ+PHRpdGxlPlRlc3Q8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+RGl0IGlzIGVlbiB0ZXN0PC9oMT48L2JvZHk+PC9odG1sPg==
+                        </sv:value>
+                    </sv:property>
+                </sv:node>
+            </sv:node>
         </sv:node>
     </sv:node>
     <sv:node sv:name="kristalsoftware">
@@ -44,6 +77,39 @@
             <sv:property sv:name="jcr:primaryType" sv:type="Name">
                 <sv:value>nt:unstructured</sv:value>
             </sv:property>
+            <sv:node sv:name="home">
+                <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                    <sv:value>nt:file</sv:value>
+                </sv:property>
+                <sv:property sv:name="jcr:createdBy" sv:type="String">
+                    <sv:value>&lt;anonymous&gt;</sv:value>
+                </sv:property>
+                <sv:property sv:name="jcr:created" sv:type="Date">
+                    <sv:value>2015-08-17T19:14:02.092+02:00</sv:value>
+                </sv:property>
+                <sv:node sv:name="jcr:content">
+                    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                        <sv:value>nt:resource</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="jcr:lastModifiedBy" sv:type="String">
+                        <sv:value>&lt;anonymous&gt;</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="jcr:encoding" sv:type="String">
+                        <sv:value>UTF-8</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="jcr:mimeType" sv:type="String">
+                        <sv:value>text/html</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="jcr:lastModified" sv:type="Date">
+                        <sv:value>2015-08-17T19:14:02.092+02:00</sv:value>
+                    </sv:property>
+                    <sv:property sv:name="jcr:data" sv:type="Binary">
+                        <sv:value>
+                            PGh0bWw+PGhlYWQ+PHRpdGxlPlRlc3Q8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+RGl0IGlzIGVlbiB0ZXN0PC9oMT48L2JvZHk+PC9odG1sPg==
+                        </sv:value>
+                    </sv:property>
+                </sv:node>
+            </sv:node>
         </sv:node>
     </sv:node>
 </sv:node>

@@ -37,8 +37,13 @@ public class CustomerJcrEntity implements IBaseJcrEntity<CustomerData> {
     }
 
     @Override
-    public String setData(String parentPath, CustomerData entity) throws PathNotFoundException, ItemExistsException, RepositoryException {
-        return null;
+    public String setData(String parentPath, CustomerData data) throws PathNotFoundException, ItemExistsException, RepositoryException {
+        String newPath = null;
+        Node node = session.getNode(parentPath);
+        Node customerNode = node.addNode(data.getNodename());
+        newPath = customerNode.getPath();
+        this.setJcrValuesFromData(customerNode, data);
+        return newPath;
     }
 
     @Override
@@ -49,7 +54,8 @@ public class CustomerJcrEntity implements IBaseJcrEntity<CustomerData> {
     }
 
     @Override
-    public void setJcrValuesFromData(Node node) throws PathNotFoundException, RepositoryException {
-
+    public void setJcrValuesFromData(Node node, CustomerData data) throws PathNotFoundException, RepositoryException {
+        version.setPropertyValue(node, "version", data.getVersion());
+        city.setPropertyValue(node, "city", data.getCity());
     }
 }

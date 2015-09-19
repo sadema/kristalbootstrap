@@ -11,7 +11,7 @@ import javax.jcr.RepositoryException;
 public interface IBaseJcrEntity<T> {
 
     T getData(String path) throws PathNotFoundException, RepositoryException;
-    String setData(String parentPath, T entity) throws PathNotFoundException, ItemExistsException, RepositoryException;
+    String setData(String parentPath, T data) throws PathNotFoundException, ItemExistsException, RepositoryException;
     void setDataFromJcrValues(Node node) throws PathNotFoundException, RepositoryException;
-    void setJcrValuesFromData(Node node) throws PathNotFoundException, RepositoryException;
+    void setJcrValuesFromData(Node node, T data) throws PathNotFoundException, RepositoryException;
 }

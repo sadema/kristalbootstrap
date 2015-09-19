@@ -28,4 +28,9 @@ public class StringJcrProperty implements JcrProperty<String> {
         }
         return value;
     }
+
+    @Override
+    public void setPropertyValue(Node node, String propertyName, String pageContent) throws RepositoryException {
+        node.setProperty(propertyName, pageContent);
+    }
 }

@@ -9,4 +9,5 @@ import javax.jcr.RepositoryException;
  */
 public interface JcrProperty<T> {
     T getPropertyValue(Node node, String propertyName) throws RepositoryException;
+    void setPropertyValue(Node node, String propertyName, T pageContent) throws RepositoryException;
 }
