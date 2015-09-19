@@ -46,6 +46,13 @@ public class PageJcrEntity extends BaseJcrEntity implements IBaseJcrEntity<PageD
     }
 
     @Override
+    public void removeData(String path) throws PathNotFoundException, RepositoryException {
+        Node node = session.getNode(path);
+        node.remove();
+        session.save();
+    }
+
+    @Override
     public void setDataFromJcrValues(Node node) throws PathNotFoundException, RepositoryException  {
         pageData.setNodename(node.getName());
         pageData.setPageContent(content.getPropertyValue(node, "content"));

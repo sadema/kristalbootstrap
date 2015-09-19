@@ -61,4 +61,18 @@ public class PageResourceImpl implements IPageResource {
         return response;
     }
 
+    @Override
+    public Response removePage(String customerId, String pageId, @Context UriInfo uriInfo) {
+        Response response = null;
+        try {
+            pageJcr.removeData(uriInfo.getPath());
+            response = Response.noContent().build();
+        } catch (PathNotFoundException e) {
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        } catch (RepositoryException e) {
+            throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
 }

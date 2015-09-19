@@ -39,4 +39,7 @@ public interface IPageResource {
     @Path("{customerId}/pages")
     Response createPage(@PathParam("customerId") String customerId, PageData pageData, @Context UriInfo uriInfo);
 
+    @DELETE
+    @Path("{customerId}/pages/{pageId}")
+    Response removePage(@PathParam("customerId") String customerId, @PathParam("pageId") String pageId, @Context UriInfo uriInfo);
 }

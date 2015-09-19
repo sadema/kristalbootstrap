@@ -47,6 +47,13 @@ public class CustomerJcrEntity implements IBaseJcrEntity<CustomerData> {
     }
 
     @Override
+    public void removeData(String path) throws PathNotFoundException, RepositoryException {
+        Node node = session.getNode(path);
+        node.remove();
+        session.save();
+    }
+
+    @Override
     public void setDataFromJcrValues(Node node) throws PathNotFoundException, RepositoryException {
         customerData.setNodename(node.getName());
         customerData.setVersion(version.getPropertyValue(node, "version"));
