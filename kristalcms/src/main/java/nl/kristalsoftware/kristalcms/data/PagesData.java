@@ -15,27 +15,27 @@ import java.util.List;
 public class PagesData {
 
     @ParentResource
-    private CustomerData customer;
+    private CustomerRSDto customer;
 
     private String nodename = "pages";
 
     @XmlElement(name="page")
-    private List<PageData> pageList = new ArrayList<PageData>();
+    private List<PageRSDto> pageList = new ArrayList<PageRSDto>();
 
     @XmlElementRef
     private RESTServiceDiscovery rest;
 
     public PagesData() {}
 
-    public PagesData(CustomerData customer) {
+    public PagesData(CustomerRSDto customer) {
         this.customer = customer;
     }
 
-    public CustomerData getCustomer() {
+    public CustomerRSDto getCustomer() {
         return customer;
     }
 
-    public void setCustomer(CustomerData customer) {
+    public void setCustomer(CustomerRSDto customer) {
         this.customer = customer;
     }
 
@@ -43,11 +43,11 @@ public class PagesData {
         return nodename;
     }
 
-    public List<PageData> getPageList() {
+    public List<PageRSDto> getPageList() {
         return pageList;
     }
 
-    public void setPageList(List<PageData> pageList) {
+    public void setPageList(List<PageRSDto> pageList) {
         this.pageList = pageList;
     }
 }

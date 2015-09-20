@@ -1,6 +1,6 @@
 package nl.kristalsoftware.kristalcms.resource;
 
-import nl.kristalsoftware.kristalcms.data.CustomerData;
+import nl.kristalsoftware.kristalcms.data.CustomerRSDto;
 import nl.kristalsoftware.kristalcms.entity.IBaseJcrEntity;
 
 import javax.enterprise.context.RequestScoped;
@@ -23,18 +23,18 @@ public class CustomerResourceImpl implements ICustomerResource {
     private Logger logger;
 
     @Inject
-    private IBaseJcrEntity<CustomerData> customerJcr;
+    private IBaseJcrEntity<CustomerRSDto> customerJcr;
 
-    public CustomerData getCustomer(String customerId, @Context UriInfo uriInfo) {
+    public CustomerRSDto getCustomer(String customerId, @Context UriInfo uriInfo) {
         logger.info(uriInfo.getPath());
-        CustomerData customerData = null;
+        CustomerRSDto customerRSDto = null;
         try {
-            customerData = customerJcr.getData(uriInfo.getPath());
+            customerRSDto = customerJcr.getData(uriInfo.getPath());
         } catch (PathNotFoundException e) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         } catch (RepositoryException e) {
             throw new WebApplicationException((Response.Status.INTERNAL_SERVER_ERROR));
         }
-        return customerData;
+        return customerRSDto;
     }
 }

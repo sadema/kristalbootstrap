@@ -18,7 +18,7 @@ public class PageCollectionData {
     private String nodename = "pages";
 
     @XmlElement(name="page")
-    private Collection<PageData> pageCollection = new ArrayList<PageData>();
+    private Collection<PageRSDto> pageCollection = new ArrayList<PageRSDto>();
 
     public String getNodename() {
         return nodename;
@@ -28,11 +28,11 @@ public class PageCollectionData {
         this.nodename = nodename;
     }
 
-    public Collection<PageData> getPageCollection() {
+    public Collection<PageRSDto> getPageCollection() {
         return pageCollection;
     }
 
-    public void setPageCollection(Collection<PageData> pageCollection) {
+    public void setPageCollection(Collection<PageRSDto> pageCollection) {
         this.pageCollection = pageCollection;
     }
 }

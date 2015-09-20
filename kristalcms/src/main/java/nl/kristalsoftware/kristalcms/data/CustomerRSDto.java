@@ -2,6 +2,7 @@ package nl.kristalsoftware.kristalcms.data;
 
 import org.jboss.resteasy.links.RESTServiceDiscovery;
 
+import javax.jcr.Node;
 import javax.xml.bind.annotation.*;
 
 /**
@@ -9,11 +10,11 @@ import javax.xml.bind.annotation.*;
  */
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlRootElement(name = "customer")
-public class CustomerData {
+public class CustomerRSDto {
 
     @XmlID
     @XmlAttribute(name="id")
-    private String nodename;
+    private String customerId;
 
     @XmlElement
     private String version;
@@ -24,18 +25,18 @@ public class CustomerData {
     @XmlElementRef
     private RESTServiceDiscovery rest;
 
-    public CustomerData() {}
+    public CustomerRSDto() {}
 
-    public CustomerData(String customerId) {
-        nodename = customerId;
+    public CustomerRSDto(String customerId) {
+        customerId = customerId;
     }
 
-    public String getNodename() {
-        return nodename;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setNodename(String nodename) {
-        this.nodename = nodename;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     public String getCity() {
@@ -53,4 +54,5 @@ public class CustomerData {
     public void setVersion(String version) {
         this.version = version;
     }
+
 }

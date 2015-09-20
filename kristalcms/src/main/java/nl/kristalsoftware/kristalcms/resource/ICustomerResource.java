@@ -1,11 +1,8 @@
 package nl.kristalsoftware.kristalcms.resource;
 
-import nl.kristalsoftware.kristalcms.data.CustomerData;
-import nl.kristalsoftware.kristalcms.data.PageData;
-import nl.kristalsoftware.kristalcms.data.PagesData;
+import nl.kristalsoftware.kristalcms.data.CustomerRSDto;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
-import org.jboss.resteasy.links.LinkResources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -25,6 +22,6 @@ public interface ICustomerResource {
     @LinkResource
     @GET
     @Path("{customerId}")
-    CustomerData getCustomer(@PathParam("customerId") String customerId, @Context UriInfo uriInfo);
+    CustomerRSDto getCustomer(@PathParam("customerId") String customerId, @Context UriInfo uriInfo);
 
 }

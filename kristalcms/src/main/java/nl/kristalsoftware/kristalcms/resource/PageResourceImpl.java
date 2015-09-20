@@ -1,7 +1,7 @@
 package nl.kristalsoftware.kristalcms.resource;
 
-import nl.kristalsoftware.kristalcms.data.CustomerData;
-import nl.kristalsoftware.kristalcms.data.PageData;
+import nl.kristalsoftware.kristalcms.data.CustomerRSDto;
+import nl.kristalsoftware.kristalcms.data.PageRSDto;
 import nl.kristalsoftware.kristalcms.data.PagesData;
 import nl.kristalsoftware.kristalcms.entity.IBaseJcrEntity;
 
@@ -21,33 +21,33 @@ import java.net.URI;
 public class PageResourceImpl implements IPageResource {
 
     @Inject
-    private IBaseJcrEntity<PageData> pageJcr;
+    private IBaseJcrEntity<PageRSDto> pageJcr;
 
     @Override
     public PagesData getPages(String customerId, @Context UriInfo uriInfo) {
-        CustomerData customerData = new CustomerData(customerId);
-        return new PagesData(customerData);
+        CustomerRSDto customerRSDto = new CustomerRSDto(customerId);
+        return new PagesData(customerRSDto);
     }
 
     @Override
-    public PageData getPage(String customerId, String pageId, @Context UriInfo uriInfo) {
-        PageData pageData = null;
+    public PageRSDto getPage(String customerId, String pageId, @Context UriInfo uriInfo) {
+        PageRSDto pageRSDto = null;
         try {
-            pageData = pageJcr.getData(uriInfo.getPath());
-            pageData.setCustomer(new CustomerData(customerId));
+            pageRSDto = pageJcr.getData(uriInfo.getPath());
+            pageRSDto.setCustomerId(customerId);
         } catch (PathNotFoundException e) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         } catch (RepositoryException e) {
             throw new WebApplicationException((Response.Status.INTERNAL_SERVER_ERROR));
         }
-        return pageData;
+        return pageRSDto;
     }
 
     @Override
-    public Response createPage(String customerId, PageData pageData, @Context UriInfo uriInfo) {
+    public Response createPage(String customerId, PageRSDto pageRSDto, @Context UriInfo uriInfo) {
         Response response = null;
         try {
-            String newPath = pageJcr.setData(uriInfo.getPath(), pageData);
+            String newPath = pageJcr.setData(uriInfo.getPath(), pageRSDto);
             if (newPath != null) {
                 response = Response.created(URI.create(newPath)).build();
             }

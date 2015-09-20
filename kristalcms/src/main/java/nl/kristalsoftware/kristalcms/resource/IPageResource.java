@@ -1,7 +1,7 @@
 package nl.kristalsoftware.kristalcms.resource;
 
-import nl.kristalsoftware.kristalcms.data.CustomerData;
-import nl.kristalsoftware.kristalcms.data.PageData;
+import nl.kristalsoftware.kristalcms.data.CustomerRSDto;
+import nl.kristalsoftware.kristalcms.data.PageRSDto;
 import nl.kristalsoftware.kristalcms.data.PagesData;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
@@ -22,7 +22,7 @@ public interface IPageResource {
     @AddLinks
     @LinkResources({
             @LinkResource,
-            @LinkResource(value = CustomerData.class, rel = "pages")
+            @LinkResource(value = CustomerRSDto.class, rel = "pages")
     })
     @GET
     @Path("{customerId}/pages")
@@ -32,12 +32,12 @@ public interface IPageResource {
     @LinkResource
     @GET
     @Path("{customerId}/pages/{pageId}")
-    PageData getPage(@PathParam("customerId") String customerId, @PathParam("pageId") String pageId, @Context UriInfo uriInfo);
+    PageRSDto getPage(@PathParam("customerId") String customerId, @PathParam("pageId") String pageId, @Context UriInfo uriInfo);
 
     @LinkResource(value = PagesData.class)
     @POST
     @Path("{customerId}/pages")
-    Response createPage(@PathParam("customerId") String customerId, PageData pageData, @Context UriInfo uriInfo);
+    Response createPage(@PathParam("customerId") String customerId, PageRSDto pageRSDto, @Context UriInfo uriInfo);
 
     @DELETE
     @Path("{customerId}/pages/{pageId}")

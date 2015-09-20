@@ -1,6 +1,7 @@
 package nl.kristalsoftware.kristalcms.entity;
 
-import nl.kristalsoftware.kristalcms.data.CustomerData;
+import nl.kristalsoftware.kristalcms.data.CustomerJcrData;
+import nl.kristalsoftware.kristalcms.data.CustomerRSDto;
 import nl.kristalsoftware.kristalcms.property.JcrProperty;
 
 import javax.enterprise.context.RequestScoped;
@@ -12,7 +13,7 @@ import java.util.logging.Logger;
  * Created by sjoerdadema on 16-09-15.
  */
 @RequestScoped
-public class CustomerJcrEntity implements IBaseJcrEntity<CustomerData> {
+public class CustomerJcrEntity implements IBaseJcrEntity<CustomerRSDto> {
 
     @Inject
     private Logger logger;
@@ -21,28 +22,29 @@ public class CustomerJcrEntity implements IBaseJcrEntity<CustomerData> {
     private Session session;
 
     @Inject
-    private CustomerData customerData;
+    private CustomerRSDto customerRSDto;
 
     @Inject
-    private JcrProperty<String> version;
-
-    @Inject
-    private JcrProperty<String> city;
+    private CustomerJcrData customerJcrData;
 
     @Override
-    public CustomerData getData(String path) throws PathNotFoundException, RepositoryException {
+    public CustomerRSDto getData(String path) throws PathNotFoundException, RepositoryException {
         Node node = session.getNode(path);
-        this.setDataFromJcrValues(node);
-        return customerData;
+        customerRSDto.setCustomerId(customerJcrData.getCustomerId(node));
+        customerRSDto.setVersion(customerJcrData.getVersion(node));
+        customerRSDto.setCity(customerJcrData.getCity(node));
+        return customerRSDto;
     }
 
     @Override
-    public String setData(String parentPath, CustomerData data) throws PathNotFoundException, ItemExistsException, RepositoryException {
+    public String setData(String parentPath, CustomerRSDto data) throws PathNotFoundException, ItemExistsException, RepositoryException {
         String newPath = null;
+/*
         Node node = session.getNode(parentPath);
         Node customerNode = node.addNode(data.getNodename());
         newPath = customerNode.getPath();
         this.setJcrValuesFromData(customerNode, data);
+*/
         return newPath;
     }
 
@@ -53,16 +55,4 @@ public class CustomerJcrEntity implements IBaseJcrEntity<CustomerData> {
         session.save();
     }
 
-    @Override
-    public void setDataFromJcrValues(Node node) throws PathNotFoundException, RepositoryException {
-        customerData.setNodename(node.getName());
-        customerData.setVersion(version.getPropertyValue(node, "version"));
-        customerData.setCity(city.getPropertyValue(node, "city"));
-    }
-
-    @Override
-    public void setJcrValuesFromData(Node node, CustomerData data) throws PathNotFoundException, RepositoryException {
-        version.setPropertyValue(node, "version", data.getVersion());
-        city.setPropertyValue(node, "city", data.getCity());
-    }
 }

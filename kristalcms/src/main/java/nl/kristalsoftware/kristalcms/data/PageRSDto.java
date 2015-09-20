@@ -10,14 +10,14 @@ import javax.xml.bind.annotation.*;
  */
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlRootElement(name="page")
-public class PageData {
+public class PageRSDto {
 
     @ParentResource
-    private CustomerData customer;
+    private CustomerRSDto customerRSDto = new CustomerRSDto();
 
     @XmlID
     @XmlAttribute(name="id")
-    private String nodename;
+    private String pageId;
 
     @XmlElement(name="content")
     private String pageContent;
@@ -25,26 +25,28 @@ public class PageData {
     @XmlElementRef
     private RESTServiceDiscovery rest;
 
-    public PageData() {}
+    public PageRSDto() {}
 
-    public PageData(CustomerData customer) {
-        this.customer = customer;
+/*
+    public PageRSDto(String customerId) {
+        customerRSDto.setCustomerId(customerId);
     }
 
-    public CustomerData getCustomer() {
-        return customer;
+    public CustomerRSDto getCustomerRSDto() {
+        return customerRSDto;
+    }
+*/
+
+    public void setCustomerId(String customerId) {
+        customerRSDto.setCustomerId(customerId);
     }
 
-    public void setCustomer(CustomerData customer) {
-        this.customer = customer;
+    public String getPageId() {
+        return pageId;
     }
 
-    public String getNodename() {
-        return nodename;
-    }
-
-    public void setNodename(String nodename) {
-        this.nodename = nodename;
+    public void setPageId(String pageId) {
+        this.pageId = pageId;
     }
 
     public String getPageContent() {
