@@ -1,8 +1,8 @@
 package nl.kristalsoftware.kristalcms.resource;
 
-import nl.kristalsoftware.kristalcms.data.CustomerRSDto;
-import nl.kristalsoftware.kristalcms.data.PageRSDto;
-import nl.kristalsoftware.kristalcms.data.PagesData;
+import nl.kristalsoftware.kristalcms.dto.CustomerRSDto;
+import nl.kristalsoftware.kristalcms.dto.PageRSDto;
+import nl.kristalsoftware.kristalcms.dto.PagesRSDto;
 import nl.kristalsoftware.kristalcms.entity.IBaseJcrEntity;
 
 import javax.inject.Inject;
@@ -24,9 +24,13 @@ public class PageResourceImpl implements IPageResource {
     private IBaseJcrEntity<PageRSDto> pageJcr;
 
     @Override
-    public PagesData getPages(String customerId, @Context UriInfo uriInfo) {
+    public PagesRSDto getPages(String customerId, @Context UriInfo uriInfo) {
+        PagesRSDto pagesRSDto = null;
         CustomerRSDto customerRSDto = new CustomerRSDto(customerId);
-        return new PagesData(customerRSDto);
+        // TODO Sjoerd: refactor naar pagesJcr
+        pagesRSDto = new PagesRSDto();
+        pagesRSDto.setCustomer(customerId);
+        return pagesRSDto;
     }
 
     @Override
@@ -47,7 +51,7 @@ public class PageResourceImpl implements IPageResource {
     public Response createPage(String customerId, PageRSDto pageRSDto, @Context UriInfo uriInfo) {
         Response response = null;
         try {
-            String newPath = pageJcr.setData(uriInfo.getPath(), pageRSDto);
+            String newPath = pageJcr.createData(uriInfo.getPath(), pageRSDto);
             if (newPath != null) {
                 response = Response.created(URI.create(newPath)).build();
             }

@@ -1,8 +1,8 @@
 package nl.kristalsoftware.kristalcms.resource;
 
-import nl.kristalsoftware.kristalcms.data.CustomerRSDto;
-import nl.kristalsoftware.kristalcms.data.PageRSDto;
-import nl.kristalsoftware.kristalcms.data.PagesData;
+import nl.kristalsoftware.kristalcms.dto.CustomerRSDto;
+import nl.kristalsoftware.kristalcms.dto.PageRSDto;
+import nl.kristalsoftware.kristalcms.dto.PagesRSDto;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import org.jboss.resteasy.links.LinkResources;
@@ -26,7 +26,7 @@ public interface IPageResource {
     })
     @GET
     @Path("{customerId}/pages")
-    PagesData getPages(@PathParam("customerId") String customerId, @Context UriInfo uriInfo);
+    PagesRSDto getPages(@PathParam("customerId") String customerId, @Context UriInfo uriInfo);
 
     @AddLinks
     @LinkResource
@@ -34,7 +34,7 @@ public interface IPageResource {
     @Path("{customerId}/pages/{pageId}")
     PageRSDto getPage(@PathParam("customerId") String customerId, @PathParam("pageId") String pageId, @Context UriInfo uriInfo);
 
-    @LinkResource(value = PagesData.class)
+    @LinkResource(value = PagesRSDto.class)
     @POST
     @Path("{customerId}/pages")
     Response createPage(@PathParam("customerId") String customerId, PageRSDto pageRSDto, @Context UriInfo uriInfo);

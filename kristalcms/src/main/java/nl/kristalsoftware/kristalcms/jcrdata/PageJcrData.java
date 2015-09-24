@@ -1,4 +1,4 @@
-package nl.kristalsoftware.kristalcms.data;
+package nl.kristalsoftware.kristalcms.jcrdata;
 
 import nl.kristalsoftware.kristalcms.annotation.TextFile;
 import nl.kristalsoftware.kristalcms.property.JcrProperty;
@@ -22,5 +22,9 @@ public class PageJcrData {
 
     public String getContent(Node node) throws RepositoryException {
         return content.getPropertyValue(node, "content");
+    }
+
+    public void setContent(Node node, String value) throws RepositoryException {
+        content.setPropertyValue(node, "content", value);
     }
 }

@@ -1,5 +1,7 @@
-package nl.kristalsoftware.kristalcms.data;
+package nl.kristalsoftware.kristalcms.dto;
 
+import nl.kristalsoftware.kristalcms.dto.CustomerRSDto;
+import nl.kristalsoftware.kristalcms.dto.PageRSDto;
 import org.jboss.resteasy.links.ParentResource;
 import org.jboss.resteasy.links.RESTServiceDiscovery;
 
@@ -12,12 +14,12 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlRootElement(name="pages")
-public class PagesData {
+public class PagesRSDto {
 
     @ParentResource
-    private CustomerRSDto customer;
+    private CustomerRSDto customerRSDto = new CustomerRSDto();
 
-    private String nodename = "pages";
+    private String pagesId = "pages";
 
     @XmlElement(name="page")
     private List<PageRSDto> pageList = new ArrayList<PageRSDto>();
@@ -25,22 +27,14 @@ public class PagesData {
     @XmlElementRef
     private RESTServiceDiscovery rest;
 
-    public PagesData() {}
+    public PagesRSDto() {}
 
-    public PagesData(CustomerRSDto customer) {
-        this.customer = customer;
+    public void setCustomer(String customerId) {
+        customerRSDto.setCustomerId(customerId);
     }
 
-    public CustomerRSDto getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(CustomerRSDto customer) {
-        this.customer = customer;
-    }
-
-    public String getNodename() {
-        return nodename;
+    public String getPagesId() {
+        return pagesId;
     }
 
     public List<PageRSDto> getPageList() {

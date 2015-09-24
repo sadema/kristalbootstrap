@@ -1,8 +1,7 @@
 package nl.kristalsoftware.kristalcms.entity;
 
-import nl.kristalsoftware.kristalcms.data.CustomerJcrData;
-import nl.kristalsoftware.kristalcms.data.CustomerRSDto;
-import nl.kristalsoftware.kristalcms.property.JcrProperty;
+import nl.kristalsoftware.kristalcms.jcrdata.CustomerJcrData;
+import nl.kristalsoftware.kristalcms.dto.CustomerRSDto;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -22,13 +21,11 @@ public class CustomerJcrEntity implements IBaseJcrEntity<CustomerRSDto> {
     private Session session;
 
     @Inject
-    private CustomerRSDto customerRSDto;
-
-    @Inject
     private CustomerJcrData customerJcrData;
 
     @Override
     public CustomerRSDto getData(String path) throws PathNotFoundException, RepositoryException {
+        CustomerRSDto customerRSDto = new CustomerRSDto();
         Node node = session.getNode(path);
         customerRSDto.setCustomerId(customerJcrData.getCustomerId(node));
         customerRSDto.setVersion(customerJcrData.getVersion(node));
@@ -37,14 +34,13 @@ public class CustomerJcrEntity implements IBaseJcrEntity<CustomerRSDto> {
     }
 
     @Override
-    public String setData(String parentPath, CustomerRSDto data) throws PathNotFoundException, ItemExistsException, RepositoryException {
+    public String createData(String parentPath, CustomerRSDto data) throws PathNotFoundException, ItemExistsException, RepositoryException {
         String newPath = null;
-/*
         Node node = session.getNode(parentPath);
-        Node customerNode = node.addNode(data.getNodename());
+        Node customerNode = node.addNode(data.getCustomerId());
         newPath = customerNode.getPath();
-        this.setJcrValuesFromData(customerNode, data);
-*/
+        customerJcrData.setVersion(customerNode, data.getVersion());
+        customerJcrData.setCity(customerNode, data.getCity());
         return newPath;
     }
 

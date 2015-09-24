@@ -1,4 +1,4 @@
-package nl.kristalsoftware.kristalcms.data;
+package nl.kristalsoftware.kristalcms.jcrdata;
 
 import nl.kristalsoftware.kristalcms.property.JcrProperty;
 

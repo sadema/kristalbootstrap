@@ -1,5 +1,6 @@
-package nl.kristalsoftware.kristalcms.data;
+package nl.kristalsoftware.kristalcms.dto;
 
+import nl.kristalsoftware.kristalcms.dto.CustomerRSDto;
 import org.jboss.resteasy.links.ParentResource;
 import org.jboss.resteasy.links.RESTServiceDiscovery;
 
@@ -26,16 +27,6 @@ public class PageRSDto {
     private RESTServiceDiscovery rest;
 
     public PageRSDto() {}
-
-/*
-    public PageRSDto(String customerId) {
-        customerRSDto.setCustomerId(customerId);
-    }
-
-    public CustomerRSDto getCustomerRSDto() {
-        return customerRSDto;
-    }
-*/
 
     public void setCustomerId(String customerId) {
         customerRSDto.setCustomerId(customerId);

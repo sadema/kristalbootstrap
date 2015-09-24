@@ -1,8 +1,7 @@
-package nl.kristalsoftware.kristalcms.data;
+package nl.kristalsoftware.kristalcms.dto;
 
 import org.jboss.resteasy.links.RESTServiceDiscovery;
 
-import javax.jcr.Node;
 import javax.xml.bind.annotation.*;
 
 /**

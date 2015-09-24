@@ -1,4 +1,6 @@
-package nl.kristalsoftware.kristalcms.data;
+package nl.kristalsoftware.kristalcms.jcrdata;
+
+import nl.kristalsoftware.kristalcms.dto.PageRSDto;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

@@ -1,6 +1,6 @@
 package nl.kristalsoftware.kristalcms.resource;
 
-import nl.kristalsoftware.kristalcms.data.CustomerRSDto;
+import nl.kristalsoftware.kristalcms.dto.CustomerRSDto;
 import nl.kristalsoftware.kristalcms.entity.IBaseJcrEntity;
 
 import javax.enterprise.context.RequestScoped;

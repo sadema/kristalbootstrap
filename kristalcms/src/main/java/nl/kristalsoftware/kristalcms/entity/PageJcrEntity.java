@@ -1,8 +1,8 @@
 package nl.kristalsoftware.kristalcms.entity;
 
 import nl.kristalsoftware.kristalcms.annotation.TextFile;
-import nl.kristalsoftware.kristalcms.data.PageJcrData;
-import nl.kristalsoftware.kristalcms.data.PageRSDto;
+import nl.kristalsoftware.kristalcms.jcrdata.PageJcrData;
+import nl.kristalsoftware.kristalcms.dto.PageRSDto;
 import nl.kristalsoftware.kristalcms.property.JcrProperty;
 
 import javax.inject.Inject;
@@ -17,9 +17,6 @@ public class PageJcrEntity extends BaseJcrEntity implements IBaseJcrEntity<PageR
     private Session session;
 
     @Inject
-    private PageRSDto pageRSDto;
-
-    @Inject
     private PageJcrData pageJcrData;
 
     @Inject
@@ -28,6 +25,7 @@ public class PageJcrEntity extends BaseJcrEntity implements IBaseJcrEntity<PageR
 
     @Override
     public PageRSDto getData(String path) throws PathNotFoundException, RepositoryException {
+        PageRSDto pageRSDto = new PageRSDto();
         Node node = session.getNode(path);
         pageRSDto.setPageId(pageJcrData.getPageId(node));
         pageRSDto.setPageContent(pageJcrData.getContent(node));
@@ -35,20 +33,18 @@ public class PageJcrEntity extends BaseJcrEntity implements IBaseJcrEntity<PageR
     }
 
     @Override
-    public String setData(String parentPath, PageRSDto data) throws PathNotFoundException, ItemExistsException, RepositoryException {
+    public String createData(String parentPath, PageRSDto data) throws PathNotFoundException, ItemExistsException, RepositoryException {
         String newPath = null;
-/*
         Node node = session.getNode(parentPath);
-        if (!nodeExists(session, buildPath(parentPath, data.getNodename()))) {
-            Node pageNode = node.addNode(data.getNodename(), "nt:file");
+        if (!nodeExists(session, buildPath(parentPath, data.getPageId()))) {
+            Node pageNode = node.addNode(data.getPageId(), "nt:file");
             newPath = pageNode.getPath();
-            this.setJcrValuesFromData(pageNode, data);
+            pageJcrData.setContent(pageNode, data.getPageContent());
             session.save();
         }
         else {
-            throw new ItemExistsException("Node " + data.getNodename() + " already exists");
+            throw new ItemExistsException("Node " + data.getPageId() + " already exists");
         }
-*/
         return newPath;
     }
 
@@ -59,16 +55,4 @@ public class PageJcrEntity extends BaseJcrEntity implements IBaseJcrEntity<PageR
         session.save();
     }
 
-/*
-    @Override
-    public void setDataFromJcrValues(Node node) throws PathNotFoundException, RepositoryException  {
-        pageRSDto.setNodename(node.getName());
-        pageRSDto.setPageContent(content.getPropertyValue(node, "content"));
-    }
-
-    @Override
-    public void setJcrValuesFromData(Node node, PageRSDto data) throws PathNotFoundException, RepositoryException {
-        content.setPropertyValue(node, "content", data.getPageContent());
-    }
-*/
 }
