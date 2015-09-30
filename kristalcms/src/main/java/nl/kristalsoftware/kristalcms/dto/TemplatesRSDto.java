@@ -1,6 +1,5 @@
 package nl.kristalsoftware.kristalcms.dto;
 
-import nl.kristalsoftware.kristalcms.dto.PageRSDto;
 import org.jboss.resteasy.links.ParentResource;
 import org.jboss.resteasy.links.RESTServiceDiscovery;
 
@@ -12,35 +11,35 @@ import java.util.List;
  * Created by sjoerdadema on 10-07-15.
  */
 @XmlAccessorType(XmlAccessType.NONE)
-@XmlRootElement(name="pages")
-public class PagesRSDto {
+@XmlRootElement(name="templates")
+public class TemplatesRSDto {
 
     @ParentResource
     private CustomerRSDto customerRSDto = new CustomerRSDto();
 
-    private String pagesId = "pages";
+    private String templatesId = "templates";
 
-    @XmlElement(name="page")
-    private List<PageRSDto> pageList = new ArrayList<PageRSDto>();
+    @XmlElement(name="template")
+    private List<TemplateRSDto> templateList = new ArrayList<TemplateRSDto>();
 
     @XmlElementRef
     private RESTServiceDiscovery rest;
 
-    public PagesRSDto() {}
+    public TemplatesRSDto() {}
 
     public void setCustomer(String customerId) {
         customerRSDto.setCustomerId(customerId);
     }
 
-    public String getPagesId() {
-        return pagesId;
+    public String getTemplatesId() {
+        return templatesId;
     }
 
-    public List<PageRSDto> getPageList() {
-        return pageList;
+    public List<TemplateRSDto> getTemplateList() {
+        return templateList;
     }
 
-    public void setPageList(List<PageRSDto> pageList) {
-        this.pageList = pageList;
+    public void setTemplateList(List<TemplateRSDto> templateList) {
+        this.templateList = templateList;
     }
 }

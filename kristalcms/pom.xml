@@ -30,6 +30,10 @@
             <version>4.0.0.Final</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <finalName>kristalcms</finalName>
