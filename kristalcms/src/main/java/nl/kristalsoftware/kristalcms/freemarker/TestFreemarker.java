@@ -33,7 +33,7 @@ public class TestFreemarker {
         cfg.setTemplateLoader(new URLTemplateLoader() {
             @Override
             protected URL getURL(String s) {
-                String urlSpec = "http://localhost:8080/kristalcms/resources/cms/prima/templates/" + s;
+                String urlSpec = "http://localhost:8080/kristalcms/resources/cms/prima/templates/main";
                 logger.info(urlSpec);
                 URL url = null;
                 try {

@@ -30,11 +30,10 @@ public interface ITemplateResource {
     @Path("{customerId}/templates")
     TemplatesRSDto getTemplates(@PathParam("customerId") String customerId, @Context UriInfo uriInfo);
 
-    @AddLinks
-    @LinkResource
     @GET
+    @Produces("text/html")
     @Path("{customerId}/templates/{templateId}")
-    TemplateRSDto getTemplate(@PathParam("customerId") String customerId, @PathParam("templateId") String templateId, @Context UriInfo uriInfo);
+    String getTemplate(@PathParam("customerId") String customerId, @PathParam("templateId") String templateId, @Context UriInfo uriInfo);
 
     @LinkResource(value = TemplatesRSDto.class)
     @POST

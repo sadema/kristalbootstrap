@@ -5,6 +5,7 @@ import nl.kristalsoftware.kristalcms.dto.TemplateRSDto;
 import nl.kristalsoftware.kristalcms.dto.TemplatesRSDto;
 import nl.kristalsoftware.kristalcms.entity.BaseJcrEntity;
 import nl.kristalsoftware.kristalcms.entity.IBaseJcrEntity;
+import nl.kristalsoftware.kristalcms.jcrdata.TemplateJcrData;
 
 import javax.inject.Inject;
 import javax.jcr.ItemExistsException;
@@ -35,17 +36,17 @@ public class TemplateResourceImpl implements ITemplateResource {
     }
 
     @Override
-    public TemplateRSDto getTemplate(String customerId, String templateId, @Context UriInfo uriInfo) {
-        TemplateRSDto templateRSDto = null;
+    public String getTemplate(String customerId, String templateId, @Context UriInfo uriInfo) {
+        String content = null;
         try {
-            templateRSDto = templateJcr.getData(uriInfo.getPath());
-            templateRSDto.setCustomerId(customerId);
+            TemplateRSDto templateRSDto = templateJcr.getData(uriInfo.getPath());
+            content = templateRSDto.getTemplateContent();
         } catch (PathNotFoundException e) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         } catch (RepositoryException e) {
             throw new WebApplicationException((Response.Status.INTERNAL_SERVER_ERROR));
         }
-        return templateRSDto;
+        return content;
     }
 
     @Override
