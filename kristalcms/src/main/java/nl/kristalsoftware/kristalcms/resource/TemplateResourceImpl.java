@@ -16,11 +16,15 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
+import java.util.logging.Logger;
 
 /**
  * Created by sjoerdadema on 29-09-15.
  */
 public class TemplateResourceImpl implements ITemplateResource {
+
+    @Inject
+    private Logger logger;
 
     @Inject
     private IBaseJcrEntity<TemplateRSDto> templateJcr;
@@ -38,8 +42,10 @@ public class TemplateResourceImpl implements ITemplateResource {
     @Override
     public String getTemplate(String customerId, String templateId, @Context UriInfo uriInfo) {
         String content = null;
+        String path = this.removeFromLastFoundCharacter(this.removeFromLastFoundCharacter(uriInfo.getPath(), '_'), '_');
+        logger.info("Path: " + path);
         try {
-            TemplateRSDto templateRSDto = templateJcr.getData(uriInfo.getPath());
+            TemplateRSDto templateRSDto = templateJcr.getData(path);
             content = templateRSDto.getTemplateContent();
         } catch (PathNotFoundException e) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
@@ -47,6 +53,15 @@ public class TemplateResourceImpl implements ITemplateResource {
             throw new WebApplicationException((Response.Status.INTERNAL_SERVER_ERROR));
         }
         return content;
+    }
+
+    private String removeFromLastFoundCharacter(String path, char c) {
+        String newPath = path;
+        int index = path.lastIndexOf('_');
+        if (index > 0) {
+            newPath = path.substring(0, index);
+        }
+        return newPath;
     }
 
     @Override

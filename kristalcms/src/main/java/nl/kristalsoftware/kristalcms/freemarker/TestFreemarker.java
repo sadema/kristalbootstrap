@@ -33,7 +33,7 @@ public class TestFreemarker {
         cfg.setTemplateLoader(new URLTemplateLoader() {
             @Override
             protected URL getURL(String s) {
-                String urlSpec = "http://localhost:8080/kristalcms/resources/cms/prima/templates/main";
+                String urlSpec = "http://localhost:8080/kristalcms/resources/cms/prima/templates/" + s;
                 logger.info(urlSpec);
                 URL url = null;
                 try {
@@ -56,7 +56,7 @@ public class TestFreemarker {
         TestFreemarker testFreemarker = new TestFreemarker();
         testFreemarker.setConfiguration();
         Map cms = testFreemarker.createDataModel();
-        Template template = testFreemarker.cfg.getTemplate("mytest.ftl");
+        Template template = testFreemarker.cfg.getTemplate("main");
         Writer out = new OutputStreamWriter(System.out);
         template.process(cms, out);
     }
