@@ -15,10 +15,10 @@
         <a class="navbar-brand" href="#">Navbar</a>
     </nav>
     <div class="row">
-        <div class="col-sm-${content.numOfColls!4}">
+        <div class="col-sm-${content.cardInfo.numOfColls!4}">
             <div class="card-deck-wrapper">
                 <div class="card-deck">
-                <#list content.cardContent.cardList as list>
+                <#list content.cardInfo.cardContent.cardList as list>
                     <div class="card">
                         <div class="card-block">
                             <h4 class="card-title">${list.title!}</h4>

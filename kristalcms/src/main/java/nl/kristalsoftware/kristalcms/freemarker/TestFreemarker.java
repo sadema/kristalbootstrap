@@ -89,9 +89,11 @@ public class TestFreemarker {
         cards.setCardList(cardList);
         Map content = new HashMap();
         cms.put("content", content);
-        Map cardContent = new HashMap();
-        content.put("cardContent", cards);
-        content.put("numOfColls", numOfColls);
+        Map cardInfo = new HashMap();
+        //Map cardContent = new HashMap();
+        content.put("cardInfo", cardInfo);
+        cardInfo.put("cardContent", cards);
+        cardInfo.put("numOfColls", numOfColls);
         return cms;
     }
 }
