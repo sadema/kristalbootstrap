@@ -21,15 +21,22 @@ import java.net.URI;
 public class PageResourceImpl implements IPageResource {
 
     @Inject
+    private IBaseJcrEntity<PagesRSDto> pagesJcr;
+
+    @Inject
     private IBaseJcrEntity<PageRSDto> pageJcr;
 
     @Override
     public PagesRSDto getPages(String customerId, @Context UriInfo uriInfo) {
         PagesRSDto pagesRSDto = null;
-        CustomerRSDto customerRSDto = new CustomerRSDto(customerId);
-        // TODO Sjoerd: refactor naar pagesJcr
-        pagesRSDto = new PagesRSDto();
-        pagesRSDto.setCustomer(customerId);
+        try {
+            pagesRSDto = pagesJcr.getData(uriInfo.getPath());
+            pagesRSDto.setCustomer(customerId);
+        } catch (PathNotFoundException e) {
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        } catch (RepositoryException e) {
+            throw new WebApplicationException((Response.Status.INTERNAL_SERVER_ERROR));
+        }
         return pagesRSDto;
     }
 

@@ -19,9 +19,9 @@ public class PageJcrEntity extends BaseJcrEntity implements IBaseJcrEntity<PageR
     @Inject
     private PageJcrData pageJcrData;
 
-    @Inject
-    @TextFile
-    private JcrProperty<String> content;
+//    @Inject
+//    @TextFile
+//    private JcrProperty<String> content;
 
     @Override
     public PageRSDto getData(String path) throws PathNotFoundException, RepositoryException {

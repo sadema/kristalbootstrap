@@ -30,6 +30,9 @@ public class PagesRSDto {
 
     public void setCustomer(String customerId) {
         customerRSDto.setCustomerId(customerId);
+        for (PageRSDto page : pageList) {
+            page.setCustomerId(customerId);
+        }
     }
 
     public String getPagesId() {
@@ -43,4 +46,5 @@ public class PagesRSDto {
     public void setPageList(List<PageRSDto> pageList) {
         this.pageList = pageList;
     }
+
 }

@@ -22,7 +22,7 @@ public interface IPageResource {
     @AddLinks
     @LinkResources({
             @LinkResource,
-            @LinkResource(value = CustomerRSDto.class, rel = "pages")
+            @LinkResource(value = CustomerRSDto.class, rel = "list")
     })
     @GET
     @Path("{customerId}/pages")

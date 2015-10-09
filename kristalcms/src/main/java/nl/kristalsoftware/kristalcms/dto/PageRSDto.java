@@ -28,6 +28,10 @@ public class PageRSDto {
 
     public PageRSDto() {}
 
+    public PageRSDto(String pageId) {
+        this.pageId = pageId;
+    }
+
     public void setCustomerId(String customerId) {
         customerRSDto.setCustomerId(customerId);
     }

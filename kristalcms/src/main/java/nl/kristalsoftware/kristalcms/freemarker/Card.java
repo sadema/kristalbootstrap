@@ -18,7 +18,6 @@ public class Card {
     }
 
     public String getText() {
-
         return text;
     }
 
