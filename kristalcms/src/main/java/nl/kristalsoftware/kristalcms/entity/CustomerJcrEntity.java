@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * Created by sjoerdadema on 16-09-15.
  */
 @RequestScoped
-public class CustomerJcrEntity implements IBaseJcrEntity<CustomerRSDto> {
+public class CustomerJcrEntity implements IBaseService<CustomerRSDto> {
 
     @Inject
     private Logger logger;

@@ -1,9 +1,8 @@
 package nl.kristalsoftware.kristalcms.resource;
 
-import nl.kristalsoftware.kristalcms.dto.CustomerRSDto;
 import nl.kristalsoftware.kristalcms.dto.PageRSDto;
 import nl.kristalsoftware.kristalcms.dto.PagesRSDto;
-import nl.kristalsoftware.kristalcms.entity.IBaseJcrEntity;
+import nl.kristalsoftware.kristalcms.entity.IBaseService;
 
 import javax.inject.Inject;
 import javax.jcr.ItemExistsException;
@@ -21,16 +20,16 @@ import java.net.URI;
 public class PageResourceImpl implements IPageResource {
 
     @Inject
-    private IBaseJcrEntity<PagesRSDto> pagesJcr;
+    private IBaseService<PagesRSDto> pagesService;
 
     @Inject
-    private IBaseJcrEntity<PageRSDto> pageJcr;
+    private IBaseService<PageRSDto> pageService;
 
     @Override
     public PagesRSDto getPages(String customerId, @Context UriInfo uriInfo) {
         PagesRSDto pagesRSDto = null;
         try {
-            pagesRSDto = pagesJcr.getData(uriInfo.getPath());
+            pagesRSDto = pagesService.getData(uriInfo.getPath());
             pagesRSDto.setCustomer(customerId);
         } catch (PathNotFoundException e) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
@@ -44,7 +43,7 @@ public class PageResourceImpl implements IPageResource {
     public PageRSDto getPage(String customerId, String pageId, @Context UriInfo uriInfo) {
         PageRSDto pageRSDto = null;
         try {
-            pageRSDto = pageJcr.getData(uriInfo.getPath());
+            pageRSDto = pageService.getData(uriInfo.getPath());
             pageRSDto.setCustomerId(customerId);
         } catch (PathNotFoundException e) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
@@ -57,8 +56,9 @@ public class PageResourceImpl implements IPageResource {
     @Override
     public Response createPage(String customerId, PageRSDto pageRSDto, @Context UriInfo uriInfo) {
         Response response = null;
+        //TODO Sjoerd: get template than get content and finally put them together as a new page
         try {
-            String newPath = pageJcr.createData(uriInfo.getPath(), pageRSDto);
+            String newPath = pageService.createData(uriInfo.getPath(), pageRSDto);
             if (newPath != null) {
                 response = Response.created(URI.create(newPath)).build();
             }
@@ -76,7 +76,7 @@ public class PageResourceImpl implements IPageResource {
     public Response removePage(String customerId, String pageId, @Context UriInfo uriInfo) {
         Response response = null;
         try {
-            pageJcr.removeData(uriInfo.getPath());
+            pageService.removeData(uriInfo.getPath());
             response = Response.noContent().build();
         } catch (PathNotFoundException e) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);

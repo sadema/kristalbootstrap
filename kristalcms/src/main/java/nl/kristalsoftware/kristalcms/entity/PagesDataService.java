@@ -1,6 +1,5 @@
 package nl.kristalsoftware.kristalcms.entity;
 
-import nl.kristalsoftware.kristalcms.dto.PageRSDto;
 import nl.kristalsoftware.kristalcms.dto.PagesRSDto;
 import nl.kristalsoftware.kristalcms.jcrdata.PagesJcrData;
 
@@ -8,14 +7,12 @@ import javax.inject.Inject;
 import javax.jcr.ItemExistsException;
 import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 /**
  * Created by sjoerdadema on 09-10-15.
  */
-public class PagesJcrEntity implements IBaseJcrEntity<PagesRSDto> {
+public class PagesDataService implements IBaseService<PagesRSDto> {
 
     @Inject
     private Logger logger;

@@ -11,7 +11,7 @@ import javax.jcr.*;
 /**
  * Created by sjoerdadema on 16-09-15.
  */
-public class TemplateJcrEntity extends BaseJcrEntity implements IBaseJcrEntity<TemplateRSDto> {
+public class TemplateJcrEntity extends BaseDataService implements IBaseService<TemplateRSDto> {
 
     @Inject
     private Session session;

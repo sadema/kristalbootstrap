@@ -1,7 +1,7 @@
 package nl.kristalsoftware.kristalcms.resource;
 
 import nl.kristalsoftware.kristalcms.dto.CustomerRSDto;
-import nl.kristalsoftware.kristalcms.entity.IBaseJcrEntity;
+import nl.kristalsoftware.kristalcms.entity.IBaseService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -23,7 +23,7 @@ public class CustomerResourceImpl implements ICustomerResource {
     private Logger logger;
 
     @Inject
-    private IBaseJcrEntity<CustomerRSDto> customerJcr;
+    private IBaseService<CustomerRSDto> customerJcr;
 
     public CustomerRSDto getCustomer(String customerId, @Context UriInfo uriInfo) {
         logger.info(uriInfo.getPath());

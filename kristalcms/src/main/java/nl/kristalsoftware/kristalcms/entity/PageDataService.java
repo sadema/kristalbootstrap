@@ -1,9 +1,7 @@
 package nl.kristalsoftware.kristalcms.entity;
 
-import nl.kristalsoftware.kristalcms.annotation.TextFile;
 import nl.kristalsoftware.kristalcms.jcrdata.PageJcrData;
 import nl.kristalsoftware.kristalcms.dto.PageRSDto;
-import nl.kristalsoftware.kristalcms.property.JcrProperty;
 
 import javax.inject.Inject;
 import javax.jcr.*;
@@ -11,7 +9,7 @@ import javax.jcr.*;
 /**
  * Created by sjoerdadema on 16-09-15.
  */
-public class PageJcrEntity extends BaseJcrEntity implements IBaseJcrEntity<PageRSDto> {
+public class PageDataService extends BaseDataService implements IBaseService<PageRSDto> {
 
     @Inject
     private Session session;

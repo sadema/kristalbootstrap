@@ -7,12 +7,12 @@ import java.util.logging.Logger;
 /**
  * Created by sjoerdadema on 17-09-15.
  */
-public class BaseJcrEntity {
+public class BaseDataService {
 
     @Inject
     private Logger logger;
 
-    protected BaseJcrEntity() {}
+    protected BaseDataService() {}
 
     protected Node getNode(Session session, String path) throws RepositoryException {
         Node node = null;

@@ -3,9 +3,7 @@ package nl.kristalsoftware.kristalcms.resource;
 import nl.kristalsoftware.kristalcms.dto.CustomerRSDto;
 import nl.kristalsoftware.kristalcms.dto.TemplateRSDto;
 import nl.kristalsoftware.kristalcms.dto.TemplatesRSDto;
-import nl.kristalsoftware.kristalcms.entity.BaseJcrEntity;
-import nl.kristalsoftware.kristalcms.entity.IBaseJcrEntity;
-import nl.kristalsoftware.kristalcms.jcrdata.TemplateJcrData;
+import nl.kristalsoftware.kristalcms.entity.IBaseService;
 
 import javax.inject.Inject;
 import javax.jcr.ItemExistsException;
@@ -27,7 +25,7 @@ public class TemplateResourceImpl implements ITemplateResource {
     private Logger logger;
 
     @Inject
-    private IBaseJcrEntity<TemplateRSDto> templateJcr;
+    private IBaseService<TemplateRSDto> templateJcr;
 
     @Override
     public TemplatesRSDto getTemplates(String customerId, @Context UriInfo uriInfo) {
