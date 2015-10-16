@@ -1,5 +1,6 @@
 package nl.kristalsoftware.kristalcms.resource;
 
+import nl.kristalsoftware.kristalcms.dto.CreatePageRSDto;
 import nl.kristalsoftware.kristalcms.dto.CustomerRSDto;
 import nl.kristalsoftware.kristalcms.dto.PageRSDto;
 import nl.kristalsoftware.kristalcms.dto.PagesRSDto;
@@ -37,7 +38,7 @@ public interface IPageResource {
     @LinkResource(value = PagesRSDto.class)
     @POST
     @Path("{customerId}/pages")
-    Response createPage(@PathParam("customerId") String customerId, PageRSDto pageRSDto, @Context UriInfo uriInfo);
+    Response createPage(@PathParam("customerId") String customerId, CreatePageRSDto createPageRSDto, @Context UriInfo uriInfo);
 
     @DELETE
     @Path("{customerId}/pages/{pageId}")

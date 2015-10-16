@@ -14,6 +14,7 @@
     <nav class="navbar navbar-light bg-faded">
         <a class="navbar-brand" href="#">Navbar</a>
     </nav>
+    <#if content?has_content>
     <div class="row">
         <div class="col-sm-${content.cardInfo.numOfColls!4}">
             <div class="card-deck-wrapper">
@@ -39,6 +40,7 @@
             </div>
         </div>
     </div>
+    </#if>
 </div>
 
 <!-- jQuery first, then Bootstrap JS. -->
