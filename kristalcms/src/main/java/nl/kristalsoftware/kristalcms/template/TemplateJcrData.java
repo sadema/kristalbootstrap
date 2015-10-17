@@ -1,4 +1,4 @@
-package nl.kristalsoftware.kristalcms.jcrdata;
+package nl.kristalsoftware.kristalcms.template;
 
 import nl.kristalsoftware.kristalcms.annotation.TextFile;
 import nl.kristalsoftware.kristalcms.property.JcrProperty;
@@ -10,13 +10,13 @@ import javax.jcr.RepositoryException;
 /**
  * Created by sjoerdadema on 20-09-15.
  */
-public class PageJcrData {
+public class TemplateJcrData {
 
     @Inject
     @TextFile
     private JcrProperty<String> content;
 
-    public String getPageId(Node node) throws RepositoryException {
+    public String getTemplateId(Node node) throws RepositoryException {
         return node.getName();
     }
 

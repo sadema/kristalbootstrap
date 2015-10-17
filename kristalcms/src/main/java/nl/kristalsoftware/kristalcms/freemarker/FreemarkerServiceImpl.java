@@ -1,19 +1,13 @@
 package nl.kristalsoftware.kristalcms.freemarker;
 
-import com.ctc.wstx.io.CharsetNames;
-import freemarker.core.ParseException;
-import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import freemarker.template.TemplateNotFoundException;
-import nl.kristalsoftware.kristalcms.dto.TemplateRSDto;
-import nl.kristalsoftware.kristalcms.entity.IBaseService;
+import nl.kristalsoftware.kristalcms.template.TemplateRSDto;
+import nl.kristalsoftware.kristalcms.base.IBaseService;
 import nl.kristalsoftware.kristalcms.main.KristalcmsFreemarker;
 
 import javax.inject.Inject;
 import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -33,8 +27,9 @@ public class FreemarkerServiceImpl implements FreemarkerService {
 
     @Override
     public String createHTMLPage(String templateName, Map content) throws IOException, TemplateException {
-        Template template = freemarker.getConfiguration().getTemplate("bstr.ftl");
-//        Template template = freemarker.getConfiguration().getTemplate(templateName);
+//        Template template = freemarker.getConfiguration().getTemplate("bstr.ftl");
+        Template template = freemarker.getConfiguration().getTemplate(templateName);
+        template.setOutputEncoding("UTF-8");
 //        ByteArrayOutputStream os = new ByteArrayOutputStream();
 //        Writer writer = new OutputStreamWriter(os, StandardCharsets.UTF_8);
 //        template.process(content, writer);

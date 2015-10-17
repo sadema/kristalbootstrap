@@ -1,7 +1,6 @@
-package nl.kristalsoftware.kristalcms.entity;
+package nl.kristalsoftware.kristalcms.page;
 
-import nl.kristalsoftware.kristalcms.dto.PagesRSDto;
-import nl.kristalsoftware.kristalcms.jcrdata.PagesJcrData;
+import nl.kristalsoftware.kristalcms.base.IBaseService;
 
 import javax.inject.Inject;
 import javax.jcr.ItemExistsException;

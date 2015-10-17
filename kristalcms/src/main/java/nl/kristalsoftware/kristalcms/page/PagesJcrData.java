@@ -1,6 +1,4 @@
-package nl.kristalsoftware.kristalcms.jcrdata;
-
-import nl.kristalsoftware.kristalcms.dto.PageRSDto;
+package nl.kristalsoftware.kristalcms.page;
 
 import javax.inject.Inject;
 import javax.jcr.*;

@@ -1,10 +1,6 @@
-package nl.kristalsoftware.kristalcms.resource;
+package nl.kristalsoftware.kristalcms.template;
 
-import nl.kristalsoftware.kristalcms.dto.CustomerRSDto;
-import nl.kristalsoftware.kristalcms.dto.PageRSDto;
-import nl.kristalsoftware.kristalcms.dto.PagesRSDto;
-import nl.kristalsoftware.kristalcms.dto.TemplateRSDto;
-import nl.kristalsoftware.kristalcms.dto.TemplatesRSDto;
+import nl.kristalsoftware.kristalcms.customer.CustomerRSDto;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import org.jboss.resteasy.links.LinkResources;

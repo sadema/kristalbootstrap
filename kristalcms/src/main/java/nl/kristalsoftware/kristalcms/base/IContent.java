@@ -1,4 +1,4 @@
-package nl.kristalsoftware.kristalcms.jcrdata;
+package nl.kristalsoftware.kristalcms.base;
 
 import javax.jcr.RepositoryException;
 

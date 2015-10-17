@@ -28,21 +28,21 @@ public class KristalcmsFreemarkerImpl implements KristalcmsFreemarker {
     public void init() {
         logger.info("init postconstruct in KristalcmsFreemarkerImpl");
         cfg = new Configuration(Configuration.VERSION_2_3_23);
-        cfg.setClassForTemplateLoading(this.getClass(), "/templates");
-//        cfg.setTemplateLoader(new URLTemplateLoader() {
-//            @Override
-//            protected URL getURL(String s) {
-//                String urlSpec = "http://localhost:8080/kristalcms/resources/cms/prima/templates/" + s;
-//                logger.info(urlSpec);
-//                URL url = null;
-//                try {
-//                    url = new URL(urlSpec);
-//                } catch (MalformedURLException e) {
-//                    e.printStackTrace();
-//                }
-//                return url;
-//            }
-//        });
+//        cfg.setClassForTemplateLoading(this.getClass(), "/templates");
+        cfg.setTemplateLoader(new URLTemplateLoader() {
+            @Override
+            protected URL getURL(String s) {
+                String urlSpec = "http://localhost:8080/kristalcms/resources/cms/prima/templates/" + s;
+                logger.info(urlSpec);
+                URL url = null;
+                try {
+                    url = new URL(urlSpec);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                return url;
+            }
+        });
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
     }

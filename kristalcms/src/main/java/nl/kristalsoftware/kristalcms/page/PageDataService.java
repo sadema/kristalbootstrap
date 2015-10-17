@@ -1,7 +1,7 @@
-package nl.kristalsoftware.kristalcms.entity;
+package nl.kristalsoftware.kristalcms.page;
 
-import nl.kristalsoftware.kristalcms.jcrdata.PageJcrData;
-import nl.kristalsoftware.kristalcms.dto.PageRSDto;
+import nl.kristalsoftware.kristalcms.base.BaseDataService;
+import nl.kristalsoftware.kristalcms.base.IBaseService;
 
 import javax.inject.Inject;
 import javax.jcr.*;

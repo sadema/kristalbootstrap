@@ -1,5 +1,6 @@
-package nl.kristalsoftware.kristalcms.dto;
+package nl.kristalsoftware.kristalcms.template;
 
+import nl.kristalsoftware.kristalcms.customer.CustomerRSDto;
 import org.jboss.resteasy.links.ParentResource;
 import org.jboss.resteasy.links.RESTServiceDiscovery;
 

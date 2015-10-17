@@ -1,4 +1,4 @@
-package nl.kristalsoftware.kristalcms.dto;
+package nl.kristalsoftware.kristalcms.customer;
 
 import org.jboss.resteasy.links.RESTServiceDiscovery;
 

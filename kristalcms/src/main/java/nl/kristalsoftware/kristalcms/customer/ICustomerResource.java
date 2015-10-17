@@ -1,6 +1,5 @@
-package nl.kristalsoftware.kristalcms.resource;
+package nl.kristalsoftware.kristalcms.customer;
 
-import nl.kristalsoftware.kristalcms.dto.CustomerRSDto;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 

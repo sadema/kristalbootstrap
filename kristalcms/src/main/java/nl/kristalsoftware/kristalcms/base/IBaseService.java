@@ -1,4 +1,4 @@
-package nl.kristalsoftware.kristalcms.entity;
+package nl.kristalsoftware.kristalcms.base;
 
 import javax.jcr.ItemExistsException;
 import javax.jcr.Node;

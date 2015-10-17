@@ -1,6 +1,6 @@
 package nl.kristalsoftware.kristalcms.servlet;
 
-import nl.kristalsoftware.kristalcms.jcrdata.PageJcrData;
+import nl.kristalsoftware.kristalcms.page.PageJcrData;
 
 import javax.inject.Inject;
 import javax.jcr.PathNotFoundException;

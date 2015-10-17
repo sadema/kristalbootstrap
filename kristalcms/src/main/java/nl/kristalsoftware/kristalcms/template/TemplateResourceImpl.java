@@ -1,9 +1,7 @@
-package nl.kristalsoftware.kristalcms.resource;
+package nl.kristalsoftware.kristalcms.template;
 
-import nl.kristalsoftware.kristalcms.dto.CustomerRSDto;
-import nl.kristalsoftware.kristalcms.dto.TemplateRSDto;
-import nl.kristalsoftware.kristalcms.dto.TemplatesRSDto;
-import nl.kristalsoftware.kristalcms.entity.IBaseService;
+import nl.kristalsoftware.kristalcms.customer.CustomerRSDto;
+import nl.kristalsoftware.kristalcms.base.IBaseService;
 
 import javax.inject.Inject;
 import javax.jcr.ItemExistsException;

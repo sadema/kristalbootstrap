@@ -1,8 +1,8 @@
-package nl.kristalsoftware.kristalcms.entity;
+package nl.kristalsoftware.kristalcms.template;
 
 import nl.kristalsoftware.kristalcms.annotation.TextFile;
-import nl.kristalsoftware.kristalcms.dto.TemplateRSDto;
-import nl.kristalsoftware.kristalcms.jcrdata.TemplateJcrData;
+import nl.kristalsoftware.kristalcms.base.BaseDataService;
+import nl.kristalsoftware.kristalcms.base.IBaseService;
 import nl.kristalsoftware.kristalcms.property.JcrProperty;
 
 import javax.inject.Inject;

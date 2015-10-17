@@ -1,10 +1,7 @@
-package nl.kristalsoftware.kristalcms.resource;
+package nl.kristalsoftware.kristalcms.page;
 
 import freemarker.template.TemplateException;
-import nl.kristalsoftware.kristalcms.dto.CreatePageRSDto;
-import nl.kristalsoftware.kristalcms.dto.PageRSDto;
-import nl.kristalsoftware.kristalcms.dto.PagesRSDto;
-import nl.kristalsoftware.kristalcms.entity.IBaseService;
+import nl.kristalsoftware.kristalcms.base.IBaseService;
 import nl.kristalsoftware.kristalcms.freemarker.Card;
 import nl.kristalsoftware.kristalcms.freemarker.Cards;
 import nl.kristalsoftware.kristalcms.freemarker.FreemarkerService;
