@@ -57,16 +57,11 @@ public class FreemarkerServiceImpl implements FreemarkerService {
         try {
             TemplateRSDto dto = templateService.getData("/cms/prima/templates/main");
             String templateHtml = dto.getTemplateContent();
-            byte[] ba = templateHtml.getBytes("UTF-8");
-            ByteArrayInputStream is = new ByteArrayInputStream(ba);
-            logger.info(new String(ba));
-            Template template = new Template(templateName, new InputStreamReader(is), null);
-            //Template template = freemarker.getConfiguration().getTemplate("bstr.ftl");
-            template.setOutputEncoding("UTF-8");
-            //CharArrayWriter out = new CharArrayWriter();
+            byte[] templateHtmlAsBytes = templateHtml.getBytes("UTF-8");
+            ByteArrayInputStream is = new ByteArrayInputStream(templateHtmlAsBytes);
+            Template template = new Template(templateName, new InputStreamReader(is), freemarker.getConfiguration());
             ByteArrayOutputStream os = new ByteArrayOutputStream();
             OutputStreamWriter writer = new OutputStreamWriter(os, "UTF-8");
-            logger.info(writer.getEncoding());
             template.process(content, writer);
             pageHtml = os.toString();
             logger.info(pageHtml);

@@ -29,7 +29,7 @@ public class KristalcmsFreemarkerImpl implements KristalcmsFreemarker {
     public void init() {
         logger.info("init postconstruct in KristalcmsFreemarkerImpl");
         cfg = new Configuration(Configuration.VERSION_2_3_23);
-        cfg.setClassForTemplateLoading(this.getClass(), "/templates");
+//        cfg.setClassForTemplateLoading(this.getClass(), "/templates");
 //        cfg.setTemplateLoader(new URLTemplateLoader() {
 //            @Override
 //            protected URL getURL(String s) {
