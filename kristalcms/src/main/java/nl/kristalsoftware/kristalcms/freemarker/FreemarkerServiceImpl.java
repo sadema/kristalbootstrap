@@ -51,12 +51,12 @@ public class FreemarkerServiceImpl implements FreemarkerService {
 */
 
     @Override
-    public String createHTMLPage(String templateName, Map content) throws IOException, TemplateException {
+    public String createHTMLPage(String templateName, Map content) throws IOException, TemplateException, RepositoryException {
         String pageHtml = "";
         logger.info(Charset.defaultCharset().toString());
-        try {
-            TemplateRSDto dto = templateService.getData("/cms/prima/templates/main");
-            String templateHtml = dto.getTemplateContent();
+        TemplateRSDto dto = templateService.getData("/cms/prima/templates/main");
+        String templateHtml = dto.getTemplateContent();
+        if (templateHtml != null) {
             byte[] templateHtmlAsBytes = templateHtml.getBytes("UTF-8");
             ByteArrayInputStream is = new ByteArrayInputStream(templateHtmlAsBytes);
             Template template = new Template(templateName, new InputStreamReader(is), freemarker.getConfiguration());
@@ -65,8 +65,9 @@ public class FreemarkerServiceImpl implements FreemarkerService {
             template.process(content, writer);
             pageHtml = os.toString();
             logger.info(pageHtml);
-        } catch (RepositoryException e) {
-            logger.severe(e.getMessage());
+        }
+        else {
+            throw new RepositoryException();
         }
         return pageHtml;
     }
@@ -76,7 +77,7 @@ public class FreemarkerServiceImpl implements FreemarkerService {
         try {
             TemplateRSDto templateRSDto = templateService.getData(templatePath);
             templateContent = templateRSDto.getTemplateContent();
-        } catch (Exception e) {
+        } catch (RepositoryException e) {
             logger.info("Could not get the template content");
         }
         return templateContent;

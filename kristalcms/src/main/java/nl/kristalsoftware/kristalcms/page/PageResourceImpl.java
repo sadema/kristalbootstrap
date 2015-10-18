@@ -75,12 +75,8 @@ public class PageResourceImpl implements IPageResource {
     public Response createPage(String customerId, CreatePageRSDto createPageRSDto, @Context UriInfo uriInfo) {
         Response response = null;
         String templateName = createPageRSDto.getTemplateName();
-        //String newPath = new StringBuffer(uriInfo.getPath()).append("/").append(templateName).toString();
         Map content = this.getContent();
         try {
-//            if (jcrUtils.pathExists(newPath)) {
-//                throw new ItemExistsException(newPath + " exists");
-//            }
             String htmlPage = freemarkerService.createHTMLPage(templateName, content);
             PageRSDto pageRSDto = new PageRSDto(createPageRSDto.getPageId());
             pageRSDto.setPageContent(htmlPage);

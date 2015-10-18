@@ -2,6 +2,7 @@ package nl.kristalsoftware.kristalcms.freemarker;
 
 import freemarker.template.TemplateException;
 
+import javax.jcr.RepositoryException;
 import java.io.IOException;
 import java.util.Map;
 
@@ -10,6 +11,6 @@ import java.util.Map;
  */
 public interface FreemarkerService {
 
-    String createHTMLPage(String templateName, Map content) throws IOException, TemplateException;
+    String createHTMLPage(String templateName, Map content) throws IOException, TemplateException, RepositoryException;
 
 }
