@@ -1,6 +1,6 @@
 package nl.kristalsoftware.kristalcms.page;
 
-import nl.kristalsoftware.kristalcms.base.IBaseService;
+import nl.kristalsoftware.kristalcms.base.DataService;
 
 import javax.inject.Inject;
 import javax.jcr.ItemExistsException;
@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 /**
  * Created by sjoerdadema on 09-10-15.
  */
-public class PagesDataService implements IBaseService<PagesRSDto> {
+public class PagesDataService implements DataService<PagesRSDto> {
 
     @Inject
     private Logger logger;

@@ -1,6 +1,8 @@
-package nl.kristalsoftware.kristalcms.template;
+package nl.kristalsoftware.kristalcms.template.resource;
 
 import nl.kristalsoftware.kristalcms.customer.CustomerRSDto;
+import nl.kristalsoftware.kristalcms.template.TemplateRSDto;
+import nl.kristalsoftware.kristalcms.template.TemplatesRSDto;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import org.jboss.resteasy.links.LinkResources;
@@ -15,7 +17,7 @@ import javax.ws.rs.core.UriInfo;
  */
 @Path("/cms")
 @Produces("application/json,application/xml")
-public interface ITemplateResource {
+public interface TemplateResourceDefinition {
 
     @AddLinks
     @LinkResources({

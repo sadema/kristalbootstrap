@@ -1,7 +1,7 @@
 package nl.kristalsoftware.kristalcms.page;
 
 import nl.kristalsoftware.kristalcms.base.BaseDataService;
-import nl.kristalsoftware.kristalcms.base.IBaseService;
+import nl.kristalsoftware.kristalcms.base.DataService;
 
 import javax.inject.Inject;
 import javax.jcr.*;
@@ -9,7 +9,7 @@ import javax.jcr.*;
 /**
  * Created by sjoerdadema on 16-09-15.
  */
-public class PageDataService extends BaseDataService implements IBaseService<PageRSDto> {
+public class PageDataService extends BaseDataService implements DataService<PageRSDto> {
 
     @Inject
     private Session session;
@@ -35,9 +35,11 @@ public class PageDataService extends BaseDataService implements IBaseService<Pag
         String newPath = null;
         Node node = session.getNode(parentPath);
         if (!nodeExists(session, buildPath(parentPath, data.getPageId()))) {
-            Node pageNode = node.addNode(data.getPageId(), "nt:file");
+            Node pageNode = node.addNode(data.getPageId());
             newPath = pageNode.getPath();
-            pageJcrData.setContent(pageNode, data.getPageContent());
+            Node htmlNode = pageNode.addNode("html", "nt:file");
+            pageNode.addNode("content");
+            pageJcrData.setContent(htmlNode, data.getPageContent());
             session.save();
         }
         else {

@@ -1,11 +1,15 @@
-package nl.kristalsoftware.kristalcms.page;
+package nl.kristalsoftware.kristalcms.page.resource;
 
 import freemarker.template.TemplateException;
-import nl.kristalsoftware.kristalcms.base.IBaseService;
+import nl.kristalsoftware.kristalcms.base.DataService;
 import nl.kristalsoftware.kristalcms.freemarker.Card;
 import nl.kristalsoftware.kristalcms.freemarker.Cards;
 import nl.kristalsoftware.kristalcms.freemarker.FreemarkerService;
 import nl.kristalsoftware.kristalcms.main.JcrUtils;
+import nl.kristalsoftware.kristalcms.page.CreatePageRSDto;
+import nl.kristalsoftware.kristalcms.page.PageRSDto;
+import nl.kristalsoftware.kristalcms.page.PagesRSDto;
+import nl.kristalsoftware.kristalcms.page.resource.PageResourceDefinition;
 
 import javax.inject.Inject;
 import javax.jcr.ItemExistsException;
@@ -26,16 +30,16 @@ import java.util.logging.Logger;
 /**
  * Created by sjoerdadema on 15-09-15.
  */
-public class PageResourceImpl implements IPageResource {
+public class PageResource implements PageResourceDefinition {
 
     @Inject
     private Logger logger;
 
     @Inject
-    private IBaseService<PagesRSDto> pagesService;
+    private DataService<PagesRSDto> pagesService;
 
     @Inject
-    private IBaseService<PageRSDto> pageService;
+    private DataService<PageRSDto> pageService;
 
     @Inject
     private FreemarkerService freemarkerService;

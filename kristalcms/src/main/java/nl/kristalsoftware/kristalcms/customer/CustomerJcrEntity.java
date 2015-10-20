@@ -1,6 +1,6 @@
 package nl.kristalsoftware.kristalcms.customer;
 
-import nl.kristalsoftware.kristalcms.base.IBaseService;
+import nl.kristalsoftware.kristalcms.base.DataService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  * Created by sjoerdadema on 16-09-15.
  */
 @RequestScoped
-public class CustomerJcrEntity implements IBaseService<CustomerRSDto> {
+public class CustomerJcrEntity implements DataService<CustomerRSDto> {
 
     @Inject
     private Logger logger;

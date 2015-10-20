@@ -1,12 +1,10 @@
 package nl.kristalsoftware.kristalcms.freemarker;
 
-import com.sun.mail.iap.ByteArray;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import nl.kristalsoftware.kristalcms.template.TemplateRSDto;
-import nl.kristalsoftware.kristalcms.base.IBaseService;
+import nl.kristalsoftware.kristalcms.base.DataService;
 import nl.kristalsoftware.kristalcms.main.KristalcmsFreemarker;
-import org.jboss.marshalling.ByteOutputStream;
 
 import javax.inject.Inject;
 import javax.jcr.RepositoryException;
@@ -27,7 +25,7 @@ public class FreemarkerServiceImpl implements FreemarkerService {
     private KristalcmsFreemarker freemarker;
 
     @Inject
-    private IBaseService<TemplateRSDto> templateService;
+    private DataService<TemplateRSDto> templateService;
 
 /*
     @Override

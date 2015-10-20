@@ -1,6 +1,8 @@
-package nl.kristalsoftware.kristalcms.customer;
+package nl.kristalsoftware.kristalcms.customer.resource;
 
-import nl.kristalsoftware.kristalcms.base.IBaseService;
+import nl.kristalsoftware.kristalcms.base.DataService;
+import nl.kristalsoftware.kristalcms.customer.CustomerRSDto;
+import nl.kristalsoftware.kristalcms.customer.resource.CustomerResourceDefinition;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -16,13 +18,13 @@ import java.util.logging.Logger;
  * Created by sjoerdadema on 07-09-15.
  */
 @RequestScoped
-public class CustomerResourceImpl implements ICustomerResource {
+public class CustomerResource implements CustomerResourceDefinition {
 
     @Inject
     private Logger logger;
 
     @Inject
-    private IBaseService<CustomerRSDto> customerJcr;
+    private DataService<CustomerRSDto> customerJcr;
 
     public CustomerRSDto getCustomer(String customerId, @Context UriInfo uriInfo) {
         logger.info(uriInfo.getPath());

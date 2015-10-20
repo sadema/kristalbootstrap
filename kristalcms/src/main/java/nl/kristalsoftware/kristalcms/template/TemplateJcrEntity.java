@@ -2,7 +2,7 @@ package nl.kristalsoftware.kristalcms.template;
 
 import nl.kristalsoftware.kristalcms.annotation.TextFile;
 import nl.kristalsoftware.kristalcms.base.BaseDataService;
-import nl.kristalsoftware.kristalcms.base.IBaseService;
+import nl.kristalsoftware.kristalcms.base.DataService;
 import nl.kristalsoftware.kristalcms.property.JcrProperty;
 
 import javax.inject.Inject;
@@ -11,7 +11,7 @@ import javax.jcr.*;
 /**
  * Created by sjoerdadema on 16-09-15.
  */
-public class TemplateJcrEntity extends BaseDataService implements IBaseService<TemplateRSDto> {
+public class TemplateJcrEntity extends BaseDataService implements DataService<TemplateRSDto> {
 
     @Inject
     private Session session;

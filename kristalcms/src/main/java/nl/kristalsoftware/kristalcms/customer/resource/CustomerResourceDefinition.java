@@ -1,5 +1,6 @@
-package nl.kristalsoftware.kristalcms.customer;
+package nl.kristalsoftware.kristalcms.customer.resource;
 
+import nl.kristalsoftware.kristalcms.customer.CustomerRSDto;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 
@@ -15,7 +16,7 @@ import javax.ws.rs.core.UriInfo;
  */
 @Path("/cms")
 @Produces("application/json,application/xml")
-public interface ICustomerResource {
+public interface CustomerResourceDefinition {
 
     @AddLinks
     @LinkResource

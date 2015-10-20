@@ -1,7 +1,10 @@
-package nl.kristalsoftware.kristalcms.template;
+package nl.kristalsoftware.kristalcms.template.resource;
 
 import nl.kristalsoftware.kristalcms.customer.CustomerRSDto;
-import nl.kristalsoftware.kristalcms.base.IBaseService;
+import nl.kristalsoftware.kristalcms.base.DataService;
+import nl.kristalsoftware.kristalcms.template.TemplateRSDto;
+import nl.kristalsoftware.kristalcms.template.TemplatesRSDto;
+import nl.kristalsoftware.kristalcms.template.resource.TemplateResourceDefinition;
 
 import javax.inject.Inject;
 import javax.jcr.ItemExistsException;
@@ -17,13 +20,13 @@ import java.util.logging.Logger;
 /**
  * Created by sjoerdadema on 29-09-15.
  */
-public class TemplateResourceImpl implements ITemplateResource {
+public class TemplateResource implements TemplateResourceDefinition {
 
     @Inject
     private Logger logger;
 
     @Inject
-    private IBaseService<TemplateRSDto> templateJcr;
+    private DataService<TemplateRSDto> templateJcr;
 
     @Override
     public TemplatesRSDto getTemplates(String customerId, @Context UriInfo uriInfo) {

@@ -1,6 +1,9 @@
-package nl.kristalsoftware.kristalcms.page;
+package nl.kristalsoftware.kristalcms.page.resource;
 
 import nl.kristalsoftware.kristalcms.customer.CustomerRSDto;
+import nl.kristalsoftware.kristalcms.page.CreatePageRSDto;
+import nl.kristalsoftware.kristalcms.page.PageRSDto;
+import nl.kristalsoftware.kristalcms.page.PagesRSDto;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import org.jboss.resteasy.links.LinkResources;
@@ -15,7 +18,7 @@ import javax.ws.rs.core.UriInfo;
  */
 @Path("/cms")
 @Produces("application/json,application/xml")
-public interface IPageResource {
+public interface PageResourceDefinition {
 
     @AddLinks
     @LinkResources({
