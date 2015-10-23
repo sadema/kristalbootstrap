@@ -2,50 +2,58 @@ package nl.kristalsoftware.kristalcms.base;
 
 import javax.inject.Inject;
 import javax.jcr.*;
-import java.util.logging.Logger;
 
 /**
- * Created by sjoerdadema on 17-09-15.
+ * Created by sjoerdadema on 23/10/15.
  */
-public class BaseDataService {
+public abstract class BaseDataService<T,U extends BaseUriInfo> {
 
     @Inject
-    private Logger logger;
+    protected Session session;
+
+    @Inject
+    protected DataServiceUtils dataServiceUtils;
 
     protected BaseDataService() {}
 
-    protected Node getNode(Session session, String path) throws RepositoryException {
-        Node node = null;
-        try {
-            node = session.getNode(path);
-        } catch (PathNotFoundException e) {
-            logger.info("Node on path " + path + " not found");
+    public T getData(U uriInfo) throws PathNotFoundException, RepositoryException {
+        Node node = session.getNode(uriInfo.getPath());
+        return getMapper().setFieldsInDto(node, uriInfo);
+    }
+
+    public String createData(U uriInfo, T data) throws PathNotFoundException, ItemExistsException, RepositoryException {
+        String newPath = null;
+        Node node = session.getNode(uriInfo.getPath());
+        Node newNode = createNode(node, uriInfo.getNodename());
+        getMapper().setFieldsInRepository(node, data);
+        return newNode.getPath();
+    }
+
+    public void removeData(U uriInfo) throws PathNotFoundException, RepositoryException {
+        Node node = session.getNode(uriInfo.getPath());
+        removeNode(node);
+        session.save();
+    }
+
+    public Node createNode(Node parentNode, String nodeName) throws ItemExistsException, RepositoryException {
+        Node newNode = null;
+        if (this.nodeExists(parentNode, nodeName)) {
+            newNode = parentNode.addNode(nodeName);
         }
-        return node;
-    }
-
-    protected String buildPath(String parentPath, String id) {
-        StringBuilder pathBuilder = new StringBuilder(parentPath).append('/').append(id);
-        return pathBuilder.toString();
-    }
-
-    protected boolean nodeExists(Session session, String path) {
-        boolean nodeExists = false;
-        try {
-            nodeExists = session.nodeExists(path);
-        } catch (RepositoryException e) {
-            logger.info(path + " already exists");
+        else {
+            throw new ItemExistsException();
         }
-        return nodeExists;
-
+        return newNode;
     }
 
-    protected void assertNodeExists(Session session, String path) throws PathNotFoundException {
-        try {
-            session.nodeExists(path);
-        } catch (RepositoryException e) {
-            logger.info(path + " does not exists");
-            throw new PathNotFoundException(e);
-        }
+    public void removeNode(Node node) throws RepositoryException {
+        node.remove();
     }
+
+    protected boolean nodeExists(Node parentNode, String nodeName) throws RepositoryException {
+        return dataServiceUtils.nodeExists(session, dataServiceUtils.buildPath(parentNode.getPath(), nodeName));
+    }
+
+    public abstract BaseMapper<T,U> getMapper();
+
 }

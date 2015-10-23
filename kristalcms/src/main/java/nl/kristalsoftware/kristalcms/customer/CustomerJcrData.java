@@ -1,5 +1,6 @@
 package nl.kristalsoftware.kristalcms.customer;
 
+import nl.kristalsoftware.kristalcms.base.BaseJcrData;
 import nl.kristalsoftware.kristalcms.property.JcrProperty;
 
 import javax.inject.Inject;
@@ -9,7 +10,7 @@ import javax.jcr.RepositoryException;
 /**
  * Created by sjoerdadema on 19-09-15.
  */
-public class CustomerJcrData {
+public class CustomerJcrData implements BaseJcrData {
 
     @Inject
     private JcrProperty<String> version;

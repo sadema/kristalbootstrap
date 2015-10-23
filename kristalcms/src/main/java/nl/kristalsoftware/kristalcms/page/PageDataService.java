@@ -1,6 +1,6 @@
 package nl.kristalsoftware.kristalcms.page;
 
-import nl.kristalsoftware.kristalcms.base.BaseDataService;
+import nl.kristalsoftware.kristalcms.base.DataServiceUtils;
 import nl.kristalsoftware.kristalcms.base.DataService;
 
 import javax.inject.Inject;
@@ -9,7 +9,7 @@ import javax.jcr.*;
 /**
  * Created by sjoerdadema on 16-09-15.
  */
-public class PageDataService extends BaseDataService implements DataService<PageRSDto> {
+public class PageDataService extends DataServiceUtils implements DataService<PageRSDto,PageUriInfo> {
 
     @Inject
     private Session session;
@@ -21,13 +21,18 @@ public class PageDataService extends BaseDataService implements DataService<Page
 //    @TextFile
 //    private JcrProperty<String> content;
 
-    @Override
+    @Deprecated
     public PageRSDto getData(String path) throws PathNotFoundException, RepositoryException {
         PageRSDto pageRSDto = new PageRSDto();
         Node node = session.getNode(path);
         pageRSDto.setPageId(pageJcrData.getPageId(node));
         pageRSDto.setPageContent(pageJcrData.getContent(node));
         return pageRSDto;
+    }
+
+    @Override
+    public PageRSDto getData(PageUriInfo baseUriInfo) throws PathNotFoundException, RepositoryException {
+        return null;
     }
 
     @Override

@@ -1,21 +1,21 @@
 package nl.kristalsoftware.kristalcms.page.resource;
 
 import freemarker.template.TemplateException;
+import nl.kristalsoftware.kristalcms.annotation.Page;
+import nl.kristalsoftware.kristalcms.base.BaseResource;
 import nl.kristalsoftware.kristalcms.base.DataService;
 import nl.kristalsoftware.kristalcms.freemarker.Card;
 import nl.kristalsoftware.kristalcms.freemarker.Cards;
 import nl.kristalsoftware.kristalcms.freemarker.FreemarkerService;
 import nl.kristalsoftware.kristalcms.main.JcrUtils;
-import nl.kristalsoftware.kristalcms.page.CreatePageRSDto;
-import nl.kristalsoftware.kristalcms.page.PageRSDto;
-import nl.kristalsoftware.kristalcms.page.PagesRSDto;
-import nl.kristalsoftware.kristalcms.page.resource.PageResourceDefinition;
+import nl.kristalsoftware.kristalcms.page.*;
+import org.jboss.resteasy.links.AddLinks;
+import org.jboss.resteasy.links.LinkResource;
 
 import javax.inject.Inject;
 import javax.jcr.ItemExistsException;
-import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
-import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
@@ -30,16 +30,12 @@ import java.util.logging.Logger;
 /**
  * Created by sjoerdadema on 15-09-15.
  */
-public class PageResource implements PageResourceDefinition {
+@Path("/cms")
+@Produces("application/json,application/xml")
+public class PageResource extends BaseResource<PageRSDto,PageUriInfo> {
 
     @Inject
     private Logger logger;
-
-    @Inject
-    private DataService<PagesRSDto> pagesService;
-
-    @Inject
-    private DataService<PageRSDto> pageService;
 
     @Inject
     private FreemarkerService freemarkerService;
@@ -47,36 +43,37 @@ public class PageResource implements PageResourceDefinition {
     @Inject
     private JcrUtils jcrUtils;
 
-    @Override
-    public PagesRSDto getPages(String customerId, @Context UriInfo uriInfo) {
-        PagesRSDto pagesRSDto = null;
-        try {
-            pagesRSDto = pagesService.getData(uriInfo.getPath());
-            pagesRSDto.setCustomer(customerId);
-        } catch (PathNotFoundException e) {
-            throw new WebApplicationException(Response.Status.NOT_FOUND);
-        } catch (RepositoryException e) {
-            throw new WebApplicationException((Response.Status.INTERNAL_SERVER_ERROR));
-        }
-        return pagesRSDto;
+    @Inject
+    @Page
+    private ResourceService<PageRSDto> pageResourceService;
+
+
+
+    @Inject
+    private DataService<PageRSDto,PageUriInfo> pageService;
+
+    @Inject
+    private PageUriInfo pageUriInfo;
+
+    @AddLinks
+    @LinkResource
+    @GET
+    @Path("{customerId}/pages/{pageId}")
+    PageRSDto getPage(@PathParam("customerId") String customerId, @PathParam("pageId") String pageId, @Context UriInfo uriInfo) {
+        setPageUriInfo(customerId, pageId, uriInfo);
+        return super.getResourceType();
     }
 
-    @Override
-    public PageRSDto getPage(String customerId, String pageId, @Context UriInfo uriInfo) {
-        PageRSDto pageRSDto = null;
-        try {
-            pageRSDto = pageService.getData(uriInfo.getPath());
-            pageRSDto.setCustomerId(customerId);
-        } catch (PathNotFoundException e) {
-            throw new WebApplicationException(Response.Status.NOT_FOUND);
-        } catch (RepositoryException e) {
-            throw new WebApplicationException((Response.Status.INTERNAL_SERVER_ERROR));
-        }
-        return pageRSDto;
+    private void setPageUriInfo(String customerId, String pageId, UriInfo uriInfo) {
+        pageUriInfo.setCustomerId(customerId);
+        pageUriInfo.setPageId(pageId);
+        pageUriInfo.setUriInfo(uriInfo);
     }
 
-    @Override
-    public Response createPage(String customerId, CreatePageRSDto createPageRSDto, @Context UriInfo uriInfo) {
+    @LinkResource(value = PagesRSDto.class)
+    @POST
+    @Path("{customerId}/pages")
+    Response createPage(@PathParam("customerId") String customerId, CreatePageRSDto createPageRSDto, @Context UriInfo uriInfo) {
         Response response = null;
         String templateName = createPageRSDto.getTemplateName();
         Map content = this.getContent();
@@ -119,18 +116,19 @@ public class PageResource implements PageResourceDefinition {
         return content;
     }
 
-    @Override
-    public Response removePage(String customerId, String pageId, @Context UriInfo uriInfo) {
-        Response response = null;
-        try {
-            pageService.removeData(uriInfo.getPath());
-            response = Response.noContent().build();
-        } catch (PathNotFoundException e) {
-            throw new WebApplicationException(Response.Status.NOT_FOUND);
-        } catch (RepositoryException e) {
-            throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
-        }
-        return response;
+    @DELETE
+    @Path("{customerId}/pages/{pageId}")
+    Response removePage(@PathParam("customerId") String customerId, @PathParam("pageId") String pageId, @Context UriInfo uriInfo) {
+        setPageUriInfo(customerId, pageId, uriInfo);
+        return super.removeResourceType();
+    }
+
+    protected DataService<PageRSDto,PageUriInfo> getResourceTypeService() {
+        return pageService;
+    }
+
+    protected PageUriInfo getResourceUriInfo() {
+        return pageUriInfo;
     }
 
 }

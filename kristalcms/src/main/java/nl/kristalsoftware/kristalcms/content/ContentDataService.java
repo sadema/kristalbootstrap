@@ -9,7 +9,7 @@ import javax.jcr.RepositoryException;
 /**
  * Created by sjoerdadema on 19-10-15.
  */
-public class ContentDataService implements DataService<ContentRSDto> {
+public class ContentDataService extends BaseDataService<ContentRSDto,ContentUriInfo> {
     @Override
     public ContentRSDto getData(String path) throws PathNotFoundException, RepositoryException {
         return null;
