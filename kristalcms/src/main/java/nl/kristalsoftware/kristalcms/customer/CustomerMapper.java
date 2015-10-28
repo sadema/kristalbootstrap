@@ -24,6 +24,7 @@ public class CustomerMapper implements BaseMapper<CustomerRSDto,CustomerUriInfo>
 
     @Override
     public CustomerRSDto setFieldsInDto(Node node, CustomerUriInfo customerUriInfo) throws PathNotFoundException, RepositoryException {
+        CustomerRSDto customerRSDto = new CustomerRSDto();
         customerRSDto.setCustomerId(customerJcrData.getCustomerId(node));
         customerRSDto.setVersion(customerJcrData.getVersion(node));
         customerRSDto.setCity(customerJcrData.getCity(node));

@@ -1,7 +1,11 @@
 package nl.kristalsoftware.kristalcms.content;
 
-import nl.kristalsoftware.kristalcms.base.DataService;
+import com.sun.xml.internal.rngom.parse.host.Base;
+import nl.kristalsoftware.kristalcms.annotation.Content;
+import nl.kristalsoftware.kristalcms.base.BaseDataService;
+import nl.kristalsoftware.kristalcms.base.BaseMapper;
 
+import javax.inject.Inject;
 import javax.jcr.ItemExistsException;
 import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
@@ -10,18 +14,14 @@ import javax.jcr.RepositoryException;
  * Created by sjoerdadema on 19-10-15.
  */
 public class ContentDataService extends BaseDataService<ContentRSDto,ContentUriInfo> {
-    @Override
-    public ContentRSDto getData(String path) throws PathNotFoundException, RepositoryException {
-        return null;
-    }
+
+    @Inject
+    @Content
+    private BaseMapper<ContentRSDto,ContentUriInfo> contentMapper;
 
     @Override
-    public String createData(String parentPath, ContentRSDto data) throws PathNotFoundException, ItemExistsException, RepositoryException {
-        return null;
+    public BaseMapper<ContentRSDto, ContentUriInfo> getMapper() {
+        return contentMapper;
     }
 
-    @Override
-    public void removeData(String path) throws PathNotFoundException, RepositoryException {
-
-    }
 }

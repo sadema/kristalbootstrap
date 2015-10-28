@@ -8,7 +8,6 @@ import javax.ws.rs.core.UriInfo;
 /**
  * Created by sjoerdadema on 20-10-15.
  */
-@Page
 public class TemplatesUriInfo implements BaseUriInfo {
 
     private final String nodeName = "templates";

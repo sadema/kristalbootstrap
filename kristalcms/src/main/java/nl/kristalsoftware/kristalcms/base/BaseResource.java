@@ -56,7 +56,7 @@ public abstract class BaseResource<T,U extends BaseUriInfo> {
 
     }
 
-    abstract protected DataService<T,U> getResourceTypeService();
+    abstract protected BaseDataService<T,U> getResourceTypeService();
 
     abstract protected U getResourceUriInfo();
 }

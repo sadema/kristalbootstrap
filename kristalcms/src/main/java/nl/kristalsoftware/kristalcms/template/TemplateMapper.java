@@ -29,6 +29,8 @@ public class TemplateMapper implements BaseMapper<TemplateRSDto,TemplateUriInfo>
 
     @Override
     public void setFieldsInRepository(Node node, TemplateRSDto data) throws PathNotFoundException, ItemExistsException, RepositoryException {
-        templateJcrData.setContent(node, data.getTemplateContent());
+        Node htmlNode = node.getNode(TemplateService.HTMLNODENAME);
+        Node contentNode = htmlNode.getNode(TemplateService.CONTENTNODENAME);
+        templateJcrData.setContent(contentNode, data.getTemplateContent());
     }
 }

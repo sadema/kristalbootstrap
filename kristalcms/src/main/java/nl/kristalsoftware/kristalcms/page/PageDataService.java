@@ -1,63 +1,43 @@
 package nl.kristalsoftware.kristalcms.page;
 
-import nl.kristalsoftware.kristalcms.base.DataServiceUtils;
-import nl.kristalsoftware.kristalcms.base.DataService;
+import nl.kristalsoftware.kristalcms.base.BaseDataService;
+import nl.kristalsoftware.kristalcms.base.BaseMapper;
+import nl.kristalsoftware.kristalcms.freemarker.PageEventData;
 
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.jcr.*;
 
 /**
  * Created by sjoerdadema on 16-09-15.
  */
-public class PageDataService extends DataServiceUtils implements DataService<PageRSDto,PageUriInfo> {
+public class PageDataService extends BaseDataService<PageRSDto,PageUriInfo> {
+
+    public final static String HTMLNODENAME = "html";
+    public final static String CONTENTNODENAME = "content";
 
     @Inject
-    private Session session;
+    private BaseMapper<PageRSDto,PageUriInfo> pageMapper;
+
+    @Override
+    public BaseMapper<PageRSDto, PageUriInfo> getMapper() {
+        return pageMapper;
+    }
 
     @Inject
-    private PageJcrData pageJcrData;
+    private Event<PageEventData> createHtmlPageEvent;
 
-//    @Inject
-//    @TextFile
-//    private JcrProperty<String> content;
-
-    @Deprecated
-    public PageRSDto getData(String path) throws PathNotFoundException, RepositoryException {
-        PageRSDto pageRSDto = new PageRSDto();
-        Node node = session.getNode(path);
-        pageRSDto.setPageId(pageJcrData.getPageId(node));
-        pageRSDto.setPageContent(pageJcrData.getContent(node));
-        return pageRSDto;
+    @Override
+    public String createData(PageUriInfo uriInfo, PageRSDto data) throws PathNotFoundException, ItemExistsException, RepositoryException {
+        createHtmlPageEvent.fire(new PageEventData(uriInfo, data));
+        return super.createData(uriInfo, data);
     }
 
     @Override
-    public PageRSDto getData(PageUriInfo baseUriInfo) throws PathNotFoundException, RepositoryException {
-        return null;
+    public Node createNode(Node parentNode, String nodeName) throws ItemExistsException, RepositoryException {
+        Node newPageNode = super.createNode(parentNode, nodeName);
+        Node htmlNode = newPageNode.addNode(HTMLNODENAME);
+        htmlNode.addNode(CONTENTNODENAME, "nt:file");
+        return newPageNode;
     }
-
-    @Override
-    public String createData(String parentPath, PageRSDto data) throws PathNotFoundException, ItemExistsException, RepositoryException {
-        String newPath = null;
-        Node node = session.getNode(parentPath);
-        if (!nodeExists(session, buildPath(parentPath, data.getPageId()))) {
-            Node pageNode = node.addNode(data.getPageId());
-            newPath = pageNode.getPath();
-            Node htmlNode = pageNode.addNode("html", "nt:file");
-            pageNode.addNode("content");
-            pageJcrData.setContent(htmlNode, data.getPageContent());
-            session.save();
-        }
-        else {
-            throw new ItemExistsException("Node " + data.getPageId() + " already exists");
-        }
-        return newPath;
-    }
-
-    @Override
-    public void removeData(String path) throws PathNotFoundException, RepositoryException {
-        Node node = session.getNode(path);
-        node.remove();
-        session.save();
-    }
-
 }

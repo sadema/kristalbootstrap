@@ -1,7 +1,8 @@
 package nl.kristalsoftware.kristalcms.template;
 
+import nl.kristalsoftware.kristalcms.annotation.Templates;
+import nl.kristalsoftware.kristalcms.base.BaseDataService;
 import nl.kristalsoftware.kristalcms.base.BaseResource;
-import nl.kristalsoftware.kristalcms.base.DataService;
 import nl.kristalsoftware.kristalcms.customer.CustomerRSDto;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
@@ -26,7 +27,8 @@ public class TemplatesResource extends BaseResource<TemplatesRSDto,TemplatesUriI
     private TemplatesUriInfo templatesUriInfo;
 
     @Inject
-    private DataService<TemplatesRSDto,TemplatesUriInfo> templatesService;
+    //@Templates
+    private BaseDataService<TemplatesRSDto,TemplatesUriInfo> templatesService;
 
     @AddLinks
     @LinkResources({
@@ -42,7 +44,7 @@ public class TemplatesResource extends BaseResource<TemplatesRSDto,TemplatesUriI
     }
 
     @Override
-    protected DataService<TemplatesRSDto, TemplatesUriInfo> getResourceTypeService() {
+    protected BaseDataService<TemplatesRSDto, TemplatesUriInfo> getResourceTypeService() {
         return templatesService;
     }
 

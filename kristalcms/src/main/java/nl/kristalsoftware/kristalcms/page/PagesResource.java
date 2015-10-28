@@ -1,15 +1,17 @@
-package nl.kristalsoftware.kristalcms.page.resource;
+package nl.kristalsoftware.kristalcms.page;
 
+import nl.kristalsoftware.kristalcms.base.BaseDataService;
 import nl.kristalsoftware.kristalcms.base.BaseResource;
-import nl.kristalsoftware.kristalcms.base.DataService;
 import nl.kristalsoftware.kristalcms.customer.CustomerRSDto;
-import nl.kristalsoftware.kristalcms.page.*;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import org.jboss.resteasy.links.LinkResources;
 
 import javax.inject.Inject;
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 
@@ -21,7 +23,7 @@ import javax.ws.rs.core.UriInfo;
 public class PagesResource extends BaseResource<PagesRSDto,PagesUriInfo> {
 
     @Inject
-    private DataService<PagesRSDto,PagesUriInfo> pagesService;
+    private BaseDataService<PagesRSDto,PagesUriInfo> pagesService;
 
     @Inject
     private PagesUriInfo pagesUriInfo;
@@ -44,7 +46,7 @@ public class PagesResource extends BaseResource<PagesRSDto,PagesUriInfo> {
     }
 
     @Override
-    protected DataService<PagesRSDto, PagesUriInfo> getResourceTypeService() {
+    protected BaseDataService<PagesRSDto, PagesUriInfo> getResourceTypeService() {
         return pagesService;
     }
 

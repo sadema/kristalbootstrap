@@ -1,31 +1,21 @@
-package nl.kristalsoftware.kristalcms.page.resource;
+package nl.kristalsoftware.kristalcms.page;
 
-import freemarker.template.TemplateException;
-import nl.kristalsoftware.kristalcms.annotation.Page;
+import nl.kristalsoftware.kristalcms.base.BaseDataService;
 import nl.kristalsoftware.kristalcms.base.BaseResource;
-import nl.kristalsoftware.kristalcms.base.DataService;
 import nl.kristalsoftware.kristalcms.freemarker.Card;
 import nl.kristalsoftware.kristalcms.freemarker.Cards;
-import nl.kristalsoftware.kristalcms.freemarker.FreemarkerService;
-import nl.kristalsoftware.kristalcms.main.JcrUtils;
-import nl.kristalsoftware.kristalcms.page.*;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 
 import javax.inject.Inject;
-import javax.jcr.ItemExistsException;
-import javax.jcr.RepositoryException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import java.io.IOException;
-import java.net.URI;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * Created by sjoerdadema on 15-09-15.
@@ -35,22 +25,7 @@ import java.util.logging.Logger;
 public class PageResource extends BaseResource<PageRSDto,PageUriInfo> {
 
     @Inject
-    private Logger logger;
-
-    @Inject
-    private FreemarkerService freemarkerService;
-
-    @Inject
-    private JcrUtils jcrUtils;
-
-    @Inject
-    @Page
-    private ResourceService<PageRSDto> pageResourceService;
-
-
-
-    @Inject
-    private DataService<PageRSDto,PageUriInfo> pageService;
+    private BaseDataService<PageRSDto,PageUriInfo> pageService;
 
     @Inject
     private PageUriInfo pageUriInfo;
@@ -75,6 +50,7 @@ public class PageResource extends BaseResource<PageRSDto,PageUriInfo> {
     @Path("{customerId}/pages")
     Response createPage(@PathParam("customerId") String customerId, CreatePageRSDto createPageRSDto, @Context UriInfo uriInfo) {
         Response response = null;
+        /*
         String templateName = createPageRSDto.getTemplateName();
         Map content = this.getContent();
         try {
@@ -93,6 +69,7 @@ public class PageResource extends BaseResource<PageRSDto,PageUriInfo> {
         } catch (RepositoryException e) {
             throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
         }
+        */
         return response;
     }
 
@@ -123,7 +100,7 @@ public class PageResource extends BaseResource<PageRSDto,PageUriInfo> {
         return super.removeResourceType();
     }
 
-    protected DataService<PageRSDto,PageUriInfo> getResourceTypeService() {
+    protected BaseDataService<PageRSDto,PageUriInfo> getResourceTypeService() {
         return pageService;
     }
 

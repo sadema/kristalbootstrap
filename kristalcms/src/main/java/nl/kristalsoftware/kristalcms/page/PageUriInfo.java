@@ -8,7 +8,6 @@ import javax.ws.rs.core.UriInfo;
 /**
  * Created by sjoerdadema on 20-10-15.
  */
-@Page
 public class PageUriInfo implements BaseUriInfo {
 
     private String customerId;

@@ -1,10 +1,7 @@
 package nl.kristalsoftware.kristalcms.template;
 
+import nl.kristalsoftware.kristalcms.base.BaseDataService;
 import nl.kristalsoftware.kristalcms.base.BaseResource;
-import nl.kristalsoftware.kristalcms.base.DataService;
-import nl.kristalsoftware.kristalcms.template.TemplateRSDto;
-import nl.kristalsoftware.kristalcms.template.TemplateUriInfo;
-import nl.kristalsoftware.kristalcms.template.TemplatesRSDto;
 import org.jboss.resteasy.links.LinkResource;
 
 import javax.inject.Inject;
@@ -25,7 +22,7 @@ public class TemplateResource extends BaseResource<TemplateRSDto,TemplateUriInfo
     private Logger logger;
 
     @Inject
-    private DataService<TemplateRSDto,TemplateUriInfo> templateService;
+    private BaseDataService<TemplateRSDto,TemplateUriInfo> templateService;
 
     @Inject
     private TemplateUriInfo templateUriInfo;
@@ -33,7 +30,7 @@ public class TemplateResource extends BaseResource<TemplateRSDto,TemplateUriInfo
     @GET
     @Produces("text/html")
     @Path("{customerId}/templates/{templateId}")
-    String getTemplate(@PathParam("customerId") String customerId, @PathParam("templateId") String templateId, @Context UriInfo uriInfo) {
+    public String getTemplate(@PathParam("customerId") String customerId, @PathParam("templateId") String templateId, @Context UriInfo uriInfo) {
         templateUriInfo.setCustomerId(customerId);
         templateUriInfo.setTemplateId(templateId);
         templateUriInfo.setUriInfo(uriInfo);
@@ -43,7 +40,7 @@ public class TemplateResource extends BaseResource<TemplateRSDto,TemplateUriInfo
     @LinkResource(value = TemplatesRSDto.class)
     @POST
     @Path("{customerId}/templates")
-    Response createTemplate(@PathParam("customerId") String customerId, TemplateRSDto templateRSDto, @Context UriInfo uriInfo) {
+    public Response createTemplate(@PathParam("customerId") String customerId, TemplateRSDto templateRSDto, @Context UriInfo uriInfo) {
         templateUriInfo.setCustomerId(customerId);
         templateUriInfo.setUriInfo(uriInfo);
         return super.createResourceType(templateRSDto);
@@ -57,7 +54,7 @@ public class TemplateResource extends BaseResource<TemplateRSDto,TemplateUriInfo
     }
 
     @Override
-    protected DataService<TemplateRSDto, TemplateUriInfo> getResourceTypeService() {
+    protected BaseDataService<TemplateRSDto, TemplateUriInfo> getResourceTypeService() {
         return templateService;
     }
 
