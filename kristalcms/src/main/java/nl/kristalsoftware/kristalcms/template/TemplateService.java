@@ -1,27 +1,26 @@
 package nl.kristalsoftware.kristalcms.template;
 
-import nl.kristalsoftware.kristalcms.base.BaseDataService;
-import nl.kristalsoftware.kristalcms.base.BaseMapper;
-
-import javax.inject.Inject;
-import javax.jcr.*;
+import nl.kristalsoftware.kristalcms.base.*;
 
 /**
  * Created by sjoerdadema on 16-09-15.
  */
-public class TemplateService extends BaseDataService<TemplateRSDto,TemplateUriInfo> { // implements DataService<TemplateRSDto> {
+public class TemplateService extends BaseDataService<TemplateRSDto,TemplateEntity> implements DataService<TemplateRSDto,TemplateEntity> {
 
     public final static String HTMLNODENAME = "html";
     public final static String CONTENTNODENAME = "content";
 
-    @Inject
-    private BaseMapper<TemplateRSDto,TemplateUriInfo> templateMapper;
-
     @Override
-    public BaseMapper<TemplateRSDto,TemplateUriInfo> getMapper() {
-        return templateMapper;
+    protected TemplateRSDto setEntity(TemplateEntity entity) {
+        return null;
     }
 
+    @Override
+    public <E extends BaseEntity> BaseDAO<E> getDAO() {
+        return null;
+    }
+
+    /*
     @Override
     public Node createNode(Node parentNode, String nodeName) throws ItemExistsException, RepositoryException {
         Node newTemplateNode = super.createNode(parentNode, nodeName);
@@ -29,6 +28,7 @@ public class TemplateService extends BaseDataService<TemplateRSDto,TemplateUriIn
         htmlNode.addNode(CONTENTNODENAME, "nt:file");
         return newTemplateNode;
     }
+    */
 
     /*
     @Inject

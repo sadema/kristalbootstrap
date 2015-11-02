@@ -1,18 +1,23 @@
 package nl.kristalsoftware.kristalcms.page;
 
+import nl.kristalsoftware.kristalcms.base.BaseController;
+import nl.kristalsoftware.kristalcms.base.BaseDataService;
+import nl.kristalsoftware.kristalcms.base.BaseEntity;
 import nl.kristalsoftware.kristalcms.freemarker.PageEventData;
-import nl.kristalsoftware.kristalcms.template.TemplateService;
-import nl.kristalsoftware.kristalcms.template.TemplateUriInfo;
 
 import javax.enterprise.event.Observes;
-import javax.ws.rs.core.UriInfo;
+import javax.inject.Inject;
 
 /**
  * Created by sjoerdadema on 26/10/15.
  */
-public class PageController {
+public class PageController extends BaseController<PageRSDto> {
 
-    private TemplateService templateService;
+    @Inject
+    private PageService pageService;
+
+    //@Inject
+    //private TemplateService templateService;
 
     public void createHtmlPage(@Observes PageEventData pageEventData) {
         // get the templatedata
@@ -25,7 +30,7 @@ public class PageController {
         if (templateHtml != null) {
             byte[] templateHtmlAsBytes = templateHtml.getBytes("UTF-8");
             ByteArrayInputStream is = new ByteArrayInputStream(templateHtmlAsBytes);
-            Template template = new Template(templateName, new InputStreamReader(is), freemarker.getConfiguration());
+            TemplateEntity template = new TemplateEntity(templateName, new InputStreamReader(is), freemarker.getConfiguration());
             ByteArrayOutputStream os = new ByteArrayOutputStream();
             OutputStreamWriter writer = new OutputStreamWriter(os, "UTF-8");
             template.process(content, writer);
@@ -38,6 +43,11 @@ public class PageController {
         return pageHtml;
 
          */
+    }
+
+    @Override
+    protected <E extends BaseEntity> BaseDataService<PageRSDto, E> getResourceTypeService() {
+        return null;
     }
 
     /*

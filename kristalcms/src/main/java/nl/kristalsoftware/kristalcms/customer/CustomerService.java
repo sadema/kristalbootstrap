@@ -1,7 +1,8 @@
 package nl.kristalsoftware.kristalcms.customer;
 
+import nl.kristalsoftware.kristalcms.base.BaseDAO;
 import nl.kristalsoftware.kristalcms.base.BaseDataService;
-import nl.kristalsoftware.kristalcms.base.BaseMapper;
+import nl.kristalsoftware.kristalcms.base.BaseDtoMapper;
 import nl.kristalsoftware.kristalcms.base.DataService;
 
 import javax.enterprise.context.RequestScoped;
@@ -11,13 +12,30 @@ import javax.inject.Inject;
  * Created by sjoerdadema on 16-09-15.
  */
 @RequestScoped
-public class CustomerService extends BaseDataService<CustomerRSDto,CustomerUriInfo> implements DataService<CustomerRSDto,CustomerUriInfo> {
+public class CustomerService extends BaseDataService<CustomerRSDto,CustomerEntity> implements DataService<CustomerRSDto,CustomerEntity> {
 
     @Inject
-    private BaseMapper<CustomerRSDto,CustomerUriInfo> customerMapper;
+    private BaseDtoMapper<CustomerRSDto,CustomerEntity> customerMapper;
+
+    @Inject
+    private CustomerDAO customerDAO;
 
     @Override
-    public BaseMapper<CustomerRSDto,CustomerUriInfo> getMapper() {
+    public BaseDAO<CustomerEntity> getDAO() {
+        return customerDAO;
+    }
+
+    protected CustomerRSDto setEntity(CustomerEntity customerEntity) {
+        CustomerRSDto customerRSDto = new CustomerRSDto();
+        customerRSDto.setCustomer(customerEntity);
+        return customerRSDto;
+    }
+
+    /*
+    @Override
+    public BaseDtoMapper<CustomerRSDto,CustomerEntity> getMapper() {
         return customerMapper;
     }
+    */
+
 }

@@ -1,7 +1,8 @@
-package nl.kristalsoftware.kristalcms.template;
+package nl.kristalsoftware.kristalcms.templates;
 
 import nl.kristalsoftware.kristalcms.customer.CustomerRSDto;
 import nl.kristalsoftware.kristalcms.template.TemplateRSDto;
+import nl.kristalsoftware.kristalcms.templates.TemplatesEntity;
 import org.jboss.resteasy.links.ParentResource;
 import org.jboss.resteasy.links.RESTServiceDiscovery;
 
@@ -19,7 +20,7 @@ public class TemplatesRSDto {
     @ParentResource
     private CustomerRSDto customerRSDto = new CustomerRSDto();
 
-    private String templatesId = "templates";
+    private String templatesId;
 
     @XmlElement(name="template")
     private List<TemplateRSDto> templateList = new ArrayList<TemplateRSDto>();
@@ -37,11 +38,19 @@ public class TemplatesRSDto {
         return templatesId;
     }
 
+    public void setTemplatesId(String templatesId) {
+        this.templatesId = templatesId;
+    }
+
     public List<TemplateRSDto> getTemplateList() {
         return templateList;
     }
 
     public void setTemplateList(List<TemplateRSDto> templateList) {
         this.templateList = templateList;
+    }
+
+    public void setTemplatesEntity(TemplatesEntity entity) {
+        setTemplatesId(entity.getId());
     }
 }

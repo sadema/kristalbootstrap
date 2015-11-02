@@ -54,4 +54,10 @@ public class CustomerRSDto {
         this.version = version;
     }
 
+    public void setCustomer(CustomerEntity customerEntity) {
+        setCustomerId(customerEntity.getId());
+        setVersion(customerEntity.getVersion());
+        setCity(customerEntity.getCity());
+    }
+
 }

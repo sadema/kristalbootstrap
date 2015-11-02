@@ -63,7 +63,7 @@ public class TestFreemarker {
         TestFreemarker testFreemarker = new TestFreemarker();
         testFreemarker.setConfiguration();
         Map cms = testFreemarker.createDataModel();
-        //Template template = testFreemarker.cfg.getTemplate("main");
+        //TemplateEntity template = testFreemarker.cfg.getTemplate("main");
         Template template = testFreemarker.cfg.getTemplate("bstr.ftl");
         Writer out = new OutputStreamWriter(System.out);
         template.process(cms, out);

@@ -1,6 +1,6 @@
 package nl.kristalsoftware.kristalcms.page;
 
-import nl.kristalsoftware.kristalcms.base.BaseMapper;
+import nl.kristalsoftware.kristalcms.base.BaseDtoMapper;
 
 import javax.inject.Inject;
 import javax.jcr.ItemExistsException;
@@ -11,8 +11,9 @@ import javax.jcr.RepositoryException;
 /**
  * Created by sjoerdadema on 25/10/15.
  */
-public class PageMapper implements BaseMapper<PageRSDto,PageUriInfo> {
+public class PageDtoMapper { //implements BaseDtoMapper<PageRSDto,PageUriInfo> {
 
+    /*
     @Inject
     private PageJcrData pageJcrData;
 
@@ -29,4 +30,5 @@ public class PageMapper implements BaseMapper<PageRSDto,PageUriInfo> {
     public void setFieldsInRepository(Node node, PageRSDto data) throws PathNotFoundException, ItemExistsException, RepositoryException {
 
     }
+    */
 }

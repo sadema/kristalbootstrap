@@ -1,6 +1,6 @@
-package nl.kristalsoftware.kristalcms.page;
+package nl.kristalsoftware.kristalcms.pages;
 
-import nl.kristalsoftware.kristalcms.base.BaseDataService;
+import nl.kristalsoftware.kristalcms.base.BaseController;
 import nl.kristalsoftware.kristalcms.base.BaseResource;
 import nl.kristalsoftware.kristalcms.customer.CustomerRSDto;
 import org.jboss.resteasy.links.AddLinks;
@@ -20,13 +20,10 @@ import javax.ws.rs.core.UriInfo;
  */
 @Path("/cms")
 @Produces("application/json,application/xml")
-public class PagesResource extends BaseResource<PagesRSDto,PagesUriInfo> {
+public class PagesResource extends BaseResource<PagesRSDto> {
 
     @Inject
-    private BaseDataService<PagesRSDto,PagesUriInfo> pagesService;
-
-    @Inject
-    private PagesUriInfo pagesUriInfo;
+    private PagesController pagesController;
 
     @AddLinks
     @LinkResources({
@@ -36,22 +33,11 @@ public class PagesResource extends BaseResource<PagesRSDto,PagesUriInfo> {
     @GET
     @Path("{customerId}/pages")
     PagesRSDto getPages(@PathParam("customerId") String customerId, @Context UriInfo uriInfo) {
-        setPagesUriInfo(customerId, uriInfo);
-        return getResourceType();
-    }
-
-    private void setPagesUriInfo(String customerId, UriInfo uriInfo) {
-        pagesUriInfo.setCustomerId(customerId);
-        pagesUriInfo.setUriInfo(uriInfo);
+        return super.getResourceType(uriInfo.getPath());
     }
 
     @Override
-    protected BaseDataService<PagesRSDto, PagesUriInfo> getResourceTypeService() {
-        return pagesService;
-    }
-
-    @Override
-    protected PagesUriInfo getResourceUriInfo() {
-        return pagesUriInfo;
+    protected BaseController<PagesRSDto> getController() {
+        return null;
     }
 }

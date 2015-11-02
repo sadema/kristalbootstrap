@@ -1,5 +1,6 @@
 package nl.kristalsoftware.kristalcms.content;
 
+import nl.kristalsoftware.kristalcms.base.BaseController;
 import nl.kristalsoftware.kristalcms.base.BaseDataService;
 import nl.kristalsoftware.kristalcms.base.BaseResource;
 import nl.kristalsoftware.kristalcms.page.PageRSDto;
@@ -17,13 +18,7 @@ import javax.ws.rs.core.UriInfo;
 /**
  * Created by sjoerdadema on 19-10-15.
  */
-public class ContentResource extends BaseResource<ContentRSDto,ContentUriInfo> {
-
-    @Inject
-    private BaseDataService<ContentRSDto,ContentUriInfo> contentService;
-
-    @Inject
-    private ContentUriInfo contentUriInfo;
+public class ContentResource extends BaseResource<ContentRSDto> {
 
     @AddLinks
     @LinkResources({
@@ -33,19 +28,11 @@ public class ContentResource extends BaseResource<ContentRSDto,ContentUriInfo> {
     @GET
     @Path("{customerId}/pages/{pageId}/content")
     public ContentRSDto getContent(@PathParam("customerId") String customerId, @PathParam("pageId") String pageId, @Context UriInfo uriInfo) {
-        contentUriInfo.setCustomerId(customerId);
-        contentUriInfo.setPageId(pageId);
-        contentUriInfo.setUriInfo(uriInfo);
-        return super.getResourceType();
+        return super.getResourceType(uriInfo.getPath());
     }
 
     @Override
-    protected BaseDataService<ContentRSDto, ContentUriInfo> getResourceTypeService() {
-        return contentService;
-    }
-
-    @Override
-    protected ContentUriInfo getResourceUriInfo() {
-        return contentUriInfo;
+    protected BaseController<ContentRSDto> getController() {
+        return null;
     }
 }

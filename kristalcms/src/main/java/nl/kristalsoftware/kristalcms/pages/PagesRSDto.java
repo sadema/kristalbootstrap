@@ -1,4 +1,4 @@
-package nl.kristalsoftware.kristalcms.page;
+package nl.kristalsoftware.kristalcms.pages;
 
 import nl.kristalsoftware.kristalcms.customer.CustomerRSDto;
 import nl.kristalsoftware.kristalcms.page.PageRSDto;

@@ -1,5 +1,10 @@
 package nl.kristalsoftware.kristalcms.base;
 
+import nl.kristalsoftware.kristalcms.customer.GetEntityEvent;
+import nl.kristalsoftware.kristalcms.main.CMSDataException;
+
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import javax.jcr.ItemExistsException;
 import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
@@ -10,20 +15,23 @@ import java.net.URI;
 /**
  * Created by sjoerdadema on 20-10-15.
  */
-public abstract class BaseResource<T,U extends BaseUriInfo> {
+public abstract class BaseResource<T> {
 
-    public T getResourceType() {
+    public T getResourceType(String path) {
         T resourceType = null;
         try {
-            resourceType = getResourceTypeService().getData(getResourceUriInfo());
+            resourceType = getController().getResourceType(path);
         } catch (PathNotFoundException e) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
-        } catch (RepositoryException e) {
+        } catch (CMSDataException e) {
             throw new WebApplicationException((Response.Status.INTERNAL_SERVER_ERROR));
         }
         return resourceType;
     }
 
+    abstract protected BaseController<T> getController();
+
+    /*
     public Response createResourceType(T resourceDTO) {
         Response response = null;
         try {
@@ -59,4 +67,5 @@ public abstract class BaseResource<T,U extends BaseUriInfo> {
     abstract protected BaseDataService<T,U> getResourceTypeService();
 
     abstract protected U getResourceUriInfo();
+    */
 }

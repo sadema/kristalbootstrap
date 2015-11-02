@@ -1,6 +1,7 @@
 package nl.kristalsoftware.kristalcms.customer;
 
 import nl.kristalsoftware.kristalcms.base.BaseJcrData;
+import nl.kristalsoftware.kristalcms.base.NodeJcrData;
 import nl.kristalsoftware.kristalcms.property.JcrProperty;
 
 import javax.inject.Inject;
@@ -10,7 +11,7 @@ import javax.jcr.RepositoryException;
 /**
  * Created by sjoerdadema on 19-09-15.
  */
-public class CustomerJcrData implements BaseJcrData {
+public class CustomerJcrData extends NodeJcrData implements BaseJcrData {
 
     @Inject
     private JcrProperty<String> version;
@@ -18,26 +19,27 @@ public class CustomerJcrData implements BaseJcrData {
     @Inject
     private JcrProperty<String> city;
 
-    public String getCustomerId(Node node) throws RepositoryException {
+    public String getCustomerId() throws RepositoryException {
         return node.getName();
     }
 
-    public void setCustomerId(Node node, String value) throws RepositoryException {
+    public void setCustomerId(String value) throws RepositoryException {
     }
 
-    public String getVersion(Node node) throws RepositoryException {
+    public String getVersion() throws RepositoryException {
         return city.getPropertyValue(node, "version");
     }
 
-    public void setVersion(Node node, String value) throws RepositoryException {
+    public void setVersion(String value) throws RepositoryException {
         city.setPropertyValue(node, "version", value);
     }
 
-    public String getCity(Node node) throws RepositoryException {
+    public String getCity() throws RepositoryException {
         return city.getPropertyValue(node, "city");
     }
 
-    public void setCity(Node node, String value) throws RepositoryException {
+    public void setCity(String value) throws RepositoryException {
         city.setPropertyValue(node, "city", value);
     }
+
 }

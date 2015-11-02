@@ -1,5 +1,6 @@
 package nl.kristalsoftware.kristalcms.template;
 
+import nl.kristalsoftware.kristalcms.base.BaseController;
 import nl.kristalsoftware.kristalcms.base.BaseDataService;
 import nl.kristalsoftware.kristalcms.base.BaseResource;
 import org.jboss.resteasy.links.LinkResource;
@@ -16,27 +17,22 @@ import java.util.logging.Logger;
  */
 @Path("/cms")
 @Produces("application/json,application/xml")
-public class TemplateResource extends BaseResource<TemplateRSDto,TemplateUriInfo> {
+public class TemplateResource extends BaseResource<TemplateRSDto> {
 
     @Inject
     private Logger logger;
 
     @Inject
-    private BaseDataService<TemplateRSDto,TemplateUriInfo> templateService;
-
-    @Inject
-    private TemplateUriInfo templateUriInfo;
+    private TemplateController templateController;
 
     @GET
     @Produces("text/html")
     @Path("{customerId}/templates/{templateId}")
     public String getTemplate(@PathParam("customerId") String customerId, @PathParam("templateId") String templateId, @Context UriInfo uriInfo) {
-        templateUriInfo.setCustomerId(customerId);
-        templateUriInfo.setTemplateId(templateId);
-        templateUriInfo.setUriInfo(uriInfo);
-        return super.getResourceType().getTemplateContent();
+        return super.getResourceType(uriInfo.getPath()).getTemplateContent();
     }
 
+    /*
     @LinkResource(value = TemplatesRSDto.class)
     @POST
     @Path("{customerId}/templates")
@@ -52,14 +48,11 @@ public class TemplateResource extends BaseResource<TemplateRSDto,TemplateUriInfo
         templateUriInfo.setUriInfo(uriInfo);
         return super.removeResourceType();
     }
+    */
 
     @Override
-    protected BaseDataService<TemplateRSDto, TemplateUriInfo> getResourceTypeService() {
-        return templateService;
+    protected BaseController<TemplateRSDto> getController() {
+        return templateController;
     }
 
-    @Override
-    protected TemplateUriInfo getResourceUriInfo() {
-        return templateUriInfo;
-    }
 }

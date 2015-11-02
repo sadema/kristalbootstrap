@@ -1,9 +1,11 @@
 package nl.kristalsoftware.kristalcms.page;
 
+import nl.kristalsoftware.kristalcms.base.BaseController;
 import nl.kristalsoftware.kristalcms.base.BaseDataService;
 import nl.kristalsoftware.kristalcms.base.BaseResource;
 import nl.kristalsoftware.kristalcms.freemarker.Card;
 import nl.kristalsoftware.kristalcms.freemarker.Cards;
+import nl.kristalsoftware.kristalcms.pages.PagesRSDto;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 
@@ -22,27 +24,14 @@ import java.util.Map;
  */
 @Path("/cms")
 @Produces("application/json,application/xml")
-public class PageResource extends BaseResource<PageRSDto,PageUriInfo> {
-
-    @Inject
-    private BaseDataService<PageRSDto,PageUriInfo> pageService;
-
-    @Inject
-    private PageUriInfo pageUriInfo;
+public class PageResource extends BaseResource<PageRSDto> {
 
     @AddLinks
     @LinkResource
     @GET
     @Path("{customerId}/pages/{pageId}")
     PageRSDto getPage(@PathParam("customerId") String customerId, @PathParam("pageId") String pageId, @Context UriInfo uriInfo) {
-        setPageUriInfo(customerId, pageId, uriInfo);
-        return super.getResourceType();
-    }
-
-    private void setPageUriInfo(String customerId, String pageId, UriInfo uriInfo) {
-        pageUriInfo.setCustomerId(customerId);
-        pageUriInfo.setPageId(pageId);
-        pageUriInfo.setUriInfo(uriInfo);
+        return super.getResourceType(uriInfo.getPath());
     }
 
     @LinkResource(value = PagesRSDto.class)
@@ -96,16 +85,11 @@ public class PageResource extends BaseResource<PageRSDto,PageUriInfo> {
     @DELETE
     @Path("{customerId}/pages/{pageId}")
     Response removePage(@PathParam("customerId") String customerId, @PathParam("pageId") String pageId, @Context UriInfo uriInfo) {
-        setPageUriInfo(customerId, pageId, uriInfo);
-        return super.removeResourceType();
+        return null; //super.removeResourceType();
     }
 
-    protected BaseDataService<PageRSDto,PageUriInfo> getResourceTypeService() {
-        return pageService;
+    @Override
+    protected BaseController<PageRSDto> getController() {
+        return null;
     }
-
-    protected PageUriInfo getResourceUriInfo() {
-        return pageUriInfo;
-    }
-
 }

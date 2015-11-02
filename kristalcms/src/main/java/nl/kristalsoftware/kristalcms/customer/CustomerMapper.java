@@ -1,39 +1,41 @@
 package nl.kristalsoftware.kristalcms.customer;
 
+import nl.kristalsoftware.kristalcms.base.BaseEntity;
+import nl.kristalsoftware.kristalcms.base.BaseJcrData;
 import nl.kristalsoftware.kristalcms.base.BaseMapper;
+import nl.kristalsoftware.kristalcms.base.BaseNodeMapper;
 
 import javax.inject.Inject;
-import javax.jcr.ItemExistsException;
-import javax.jcr.Node;
-import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
 
 /**
- * Created by sjoerdadema on 23/10/15.
+ * Created by sjoerdadema on 29/10/15.
  */
-public class CustomerMapper implements BaseMapper<CustomerRSDto,CustomerUriInfo> {
+public class CustomerMapper extends BaseNodeMapper<CustomerEntity> implements BaseMapper<CustomerEntity> {
 
-    private final CustomerRSDto customerRSDto;
+    private final CustomerEntity customerEntity;
 
     @Inject
-    private CustomerJcrData customerJcrData;
+    private CustomerJcrData jcrData;
 
     public CustomerMapper() {
-       this.customerRSDto = new CustomerRSDto();
+        customerEntity = new CustomerEntity();
+    }
+
+    protected CustomerEntity getEntity() throws RepositoryException {
+        customerEntity.setId(jcrData.getCustomerId());
+        customerEntity.setCity(jcrData.getCity());
+        customerEntity.setVersion(jcrData.getVersion());
+        return customerEntity;
     }
 
     @Override
-    public CustomerRSDto setFieldsInDto(Node node, CustomerUriInfo customerUriInfo) throws PathNotFoundException, RepositoryException {
-        CustomerRSDto customerRSDto = new CustomerRSDto();
-        customerRSDto.setCustomerId(customerJcrData.getCustomerId(node));
-        customerRSDto.setVersion(customerJcrData.getVersion(node));
-        customerRSDto.setCity(customerJcrData.getCity(node));
-        return customerRSDto;
+    public BaseJcrData getJcrData() {
+        return jcrData;
     }
 
     @Override
-    public void setFieldsInRepository(Node node, CustomerRSDto data) throws PathNotFoundException, ItemExistsException, RepositoryException {
-        customerJcrData.setVersion(node, data.getVersion());
-        customerJcrData.setCity(node, data.getCity());
+    public BaseEntity getBaseEntity() {
+        return customerEntity;
     }
 }

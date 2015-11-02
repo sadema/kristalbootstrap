@@ -1,5 +1,6 @@
 package nl.kristalsoftware.kristalcms.customer;
 
+import nl.kristalsoftware.kristalcms.base.BaseController;
 import nl.kristalsoftware.kristalcms.base.BaseDataService;
 import nl.kristalsoftware.kristalcms.base.BaseResource;
 import org.jboss.resteasy.links.AddLinks;
@@ -18,35 +19,22 @@ import javax.ws.rs.core.UriInfo;
 @Path("/cms")
 @Produces("application/json,application/xml")
 @Consumes("application/json,application/xml")
-public class CustomerResource extends BaseResource<CustomerRSDto,CustomerUriInfo> {
+public class CustomerResource extends BaseResource<CustomerRSDto> {
 
     @Inject
-    private CustomerUriInfo customerUriInfo;
-
-    @Inject
-    private BaseDataService<CustomerRSDto,CustomerUriInfo> customerService;
+    private BaseController<CustomerRSDto> customerController;
 
     @AddLinks
     @LinkResource
     @GET
     @Path("{customerId}")
     public CustomerRSDto getCustomer(@PathParam("customerId") String customerId, @Context UriInfo uriInfo) {
-        setCustomerUriInfo(customerId, uriInfo);
-        return super.getResourceType();
-    }
-
-    private void setCustomerUriInfo(String customerId, UriInfo uriInfo) {
-        customerUriInfo.setCustomerId(customerId);
-        customerUriInfo.setUriInfo(uriInfo);
+        CustomerRSDto customerRSDto = super.getResourceType(uriInfo.getPath());
+        return customerRSDto;
     }
 
     @Override
-    protected BaseDataService<CustomerRSDto, CustomerUriInfo> getResourceTypeService() {
-        return customerService;
-    }
-
-    @Override
-    protected CustomerUriInfo getResourceUriInfo() {
-        return customerUriInfo;
+    protected BaseController<CustomerRSDto> getController() {
+        return customerController;
     }
 }

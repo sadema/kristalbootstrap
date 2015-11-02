@@ -1,6 +1,6 @@
 package nl.kristalsoftware.kristalcms.template;
 
-import nl.kristalsoftware.kristalcms.base.BaseMapper;
+import nl.kristalsoftware.kristalcms.base.BaseDtoMapper;
 
 import javax.inject.Inject;
 import javax.jcr.ItemExistsException;
@@ -11,8 +11,9 @@ import javax.jcr.RepositoryException;
 /**
  * Created by sjoerdadema on 24/10/15.
  */
-public class TemplateMapper implements BaseMapper<TemplateRSDto,TemplateUriInfo> {
+public class TemplateDtoMapper { //implements BaseDtoMapper<TemplateRSDto,TemplateUriInfo> {
 
+    /*
     @Inject
     private TemplateJcrData templateJcrData;
 
@@ -33,4 +34,5 @@ public class TemplateMapper implements BaseMapper<TemplateRSDto,TemplateUriInfo>
         Node contentNode = htmlNode.getNode(TemplateService.CONTENTNODENAME);
         templateJcrData.setContent(contentNode, data.getTemplateContent());
     }
+    */
 }
