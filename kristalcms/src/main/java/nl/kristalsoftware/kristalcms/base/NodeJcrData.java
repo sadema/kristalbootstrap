@@ -18,6 +18,8 @@ public class NodeJcrData {
     @Inject
     private Session session;
 
+    protected NodeJcrData() {}
+
     public void setNode(String path) throws PathNotFoundException, RepositoryException {
         node = session.getNode(path);
     }

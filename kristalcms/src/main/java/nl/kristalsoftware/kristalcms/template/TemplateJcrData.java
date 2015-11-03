@@ -1,7 +1,7 @@
 package nl.kristalsoftware.kristalcms.template;
 
 import nl.kristalsoftware.kristalcms.annotation.TextFile;
-import nl.kristalsoftware.kristalcms.property.JcrProperty;
+import nl.kristalsoftware.kristalcms.corejcr.property.JcrProperty;
 
 import javax.inject.Inject;
 import javax.jcr.Node;
