@@ -33,7 +33,7 @@ public class CustomerService extends BaseDataService<CustomerRSDto,CustomerEntit
 
     /*
     @Override
-    public BaseDtoMapper<CustomerRSDto,CustomerEntity> getMapper() {
+    public BaseDtoMapper<CustomerRSDto,CustomerEntity> getFactory() {
         return customerMapper;
     }
     */

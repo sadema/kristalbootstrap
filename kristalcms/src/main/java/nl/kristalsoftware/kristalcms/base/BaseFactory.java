@@ -8,8 +8,8 @@ import javax.jcr.RepositoryException;
 /**
  * Created by sjoerdadema on 29/10/15.
  */
-public interface BaseMapper<T> {
+public interface BaseFactory<T> {
 
-    public T getEntity(String path) throws PathNotFoundException, RepositoryException;
+    public T createEntity(String path) throws PathNotFoundException, RepositoryException;
 
 }

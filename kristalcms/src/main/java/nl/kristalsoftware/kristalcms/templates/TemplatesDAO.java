@@ -1,7 +1,7 @@
 package nl.kristalsoftware.kristalcms.templates;
 
 import nl.kristalsoftware.kristalcms.base.BaseDAO;
-import nl.kristalsoftware.kristalcms.base.BaseMapper;
+import nl.kristalsoftware.kristalcms.base.BaseFactory;
 
 import javax.inject.Inject;
 
@@ -11,10 +11,10 @@ import javax.inject.Inject;
 public class TemplatesDAO extends BaseDAO<TemplatesEntity> {
 
     @Inject
-    private TemplatesMapper mapper;
+    private TemplatesFactory factory;
 
     @Override
-    protected BaseMapper<TemplatesEntity> getMapper() {
-        return mapper;
+    protected BaseFactory<TemplatesEntity> getFactory() {
+        return factory;
     }
 }

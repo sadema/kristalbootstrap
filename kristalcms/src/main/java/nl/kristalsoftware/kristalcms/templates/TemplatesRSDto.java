@@ -1,6 +1,7 @@
 package nl.kristalsoftware.kristalcms.templates;
 
 import nl.kristalsoftware.kristalcms.customer.CustomerRSDto;
+import nl.kristalsoftware.kristalcms.template.TemplateEntity;
 import nl.kristalsoftware.kristalcms.template.TemplateRSDto;
 import nl.kristalsoftware.kristalcms.templates.TemplatesEntity;
 import org.jboss.resteasy.links.ParentResource;
@@ -50,7 +51,4 @@ public class TemplatesRSDto {
         this.templateList = templateList;
     }
 
-    public void setTemplatesEntity(TemplatesEntity entity) {
-        setTemplatesId(entity.getId());
-    }
 }

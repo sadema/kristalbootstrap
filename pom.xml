@@ -10,9 +10,10 @@
     <packaging>pom</packaging>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
         <failOnMissingWebXml>false</failOnMissingWebXml>
+        <modeshape.version>4.4.0.Final</modeshape.version>
     </properties>
 
     <dependencyManagement>
@@ -30,12 +31,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--
             <dependency>
                 <groupId>org.modeshape.bom</groupId>
-                <artifactId>modeshape-bom-jbossas</artifactId>
-                <version>4.0.0.Final</version>
-            </dependency> -->
+                <artifactId>modeshape-bom-embedded</artifactId>
+                <version>${modeshape.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>javax.jcr</groupId>
                 <artifactId>jcr</artifactId>

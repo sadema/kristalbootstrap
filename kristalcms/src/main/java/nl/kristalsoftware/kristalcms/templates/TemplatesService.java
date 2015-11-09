@@ -1,9 +1,16 @@
 package nl.kristalsoftware.kristalcms.templates;
 
 import nl.kristalsoftware.kristalcms.base.*;
+import nl.kristalsoftware.kristalcms.main.CMSDataException;
+import nl.kristalsoftware.kristalcms.template.TemplateDAO;
+import nl.kristalsoftware.kristalcms.template.TemplateRSDto;
+import nl.kristalsoftware.kristalcms.template.TemplateService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.jcr.PathNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by sjoerdadema on 16-09-15.
@@ -14,10 +21,26 @@ public class TemplatesService extends BaseDataService<TemplatesRSDto,TemplatesEn
     @Inject
     private TemplatesDAO templatesDAO;
 
+    @Inject
+    private TemplateService templateService;
+
     @Override
     protected TemplatesRSDto setEntity(TemplatesEntity entity) {
         TemplatesRSDto templatesRSDto = new TemplatesRSDto();
-        templatesRSDto.setTemplatesEntity(entity);
+        List<TemplateRSDto> templateRSDtoList = new ArrayList<TemplateRSDto>();
+        List<String> templatePathList = entity.getTemplateEntityList();
+        for (String path : templatePathList) {
+            TemplateRSDto templateRSDto;
+            try {
+                templateRSDto = templateService.getData(path);
+                templateRSDtoList.add(templateRSDto);
+            } catch (PathNotFoundException e) {
+                // do nothing
+            } catch (CMSDataException e) {
+                // do nothing
+            }
+        }
+        templatesRSDto.setTemplateList(templateRSDtoList);
         return templatesRSDto;
     }
 

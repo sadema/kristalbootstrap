@@ -2,6 +2,8 @@ package nl.kristalsoftware.kristalcms.template;
 
 import nl.kristalsoftware.kristalcms.base.*;
 
+import javax.inject.Inject;
+
 /**
  * Created by sjoerdadema on 16-09-15.
  */
@@ -10,14 +12,18 @@ public class TemplateService extends BaseDataService<TemplateRSDto,TemplateEntit
     public final static String HTMLNODENAME = "html";
     public final static String CONTENTNODENAME = "content";
 
+    @Inject
+    private TemplateDAO templateDAO;
+
     @Override
     protected TemplateRSDto setEntity(TemplateEntity entity) {
-        return null;
+        TemplateRSDto templateRSDto = new TemplateRSDto();
+        return templateRSDto;
     }
 
     @Override
-    public <E extends BaseEntity> BaseDAO<E> getDAO() {
-        return null;
+    public BaseDAO<TemplateEntity> getDAO() {
+        return templateDAO;
     }
 
     /*

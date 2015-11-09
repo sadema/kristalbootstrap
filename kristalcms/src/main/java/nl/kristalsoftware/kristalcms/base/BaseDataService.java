@@ -29,7 +29,7 @@ public abstract class BaseDataService<T,E extends BaseEntity> {
         String newPath = null;
         Node node = session.getNode(uriInfo.getPath());
         Node newNode = createNode(node, uriInfo.getNodename());
-        getMapper().setFieldsInRepository(node, data);
+        getFactory().setFieldsInRepository(node, data);
         return newNode.getPath();
     }
 
@@ -58,7 +58,7 @@ public abstract class BaseDataService<T,E extends BaseEntity> {
         return dataServiceUtils.nodeExists(session, dataServiceUtils.buildPath(parentNode.getPath(), nodeName));
     }
 
-    public abstract BaseDtoMapper<T,E> getMapper();
+    public abstract BaseDtoMapper<T,E> getFactory();
     */
 
     public abstract <E extends BaseEntity> BaseDAO<E> getDAO();

@@ -11,13 +11,13 @@ import java.util.List;
  */
 public class TemplatesEntity extends BaseEntity {
 
-    private List<TemplateEntity> templateEntityList = new ArrayList<TemplateEntity>();
+    private List<String> templateEntityPathList = new ArrayList<String>();
 
-    public List<TemplateEntity> getTemplateEntityList() {
-        return templateEntityList;
+    public List<String> getTemplateEntityList() {
+        return templateEntityPathList;
     }
 
-    public void setTemplateEntityList(List<TemplateEntity> templateEntityList) {
-        this.templateEntityList = templateEntityList;
+    public void setTemplateEntityList(List<String> templateEntityPathList) {
+        this.templateEntityPathList = templateEntityPathList;
     }
 }

@@ -1,7 +1,7 @@
 package nl.kristalsoftware.kristalcms.customer;
 
 import nl.kristalsoftware.kristalcms.base.BaseDAO;
-import nl.kristalsoftware.kristalcms.base.BaseMapper;
+import nl.kristalsoftware.kristalcms.base.BaseFactory;
 
 import javax.inject.Inject;
 
@@ -11,10 +11,10 @@ import javax.inject.Inject;
 public class CustomerDAO extends BaseDAO<CustomerEntity> {
 
     @Inject
-    private CustomerMapper mapper;
+    private CustomerFactory mapper;
 
     @Override
-    protected BaseMapper<CustomerEntity> getMapper() {
+    protected BaseFactory<CustomerEntity> getFactory() {
         return mapper;
     }
 }

@@ -1,5 +1,6 @@
 package nl.kristalsoftware.kristalcms.base;
 
+import javax.jcr.Node;
 import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
 
@@ -9,4 +10,6 @@ import javax.jcr.RepositoryException;
 public interface BaseJcrData {
 
     void setNode(String path) throws PathNotFoundException, RepositoryException;
+    Node getNode();
+
 }

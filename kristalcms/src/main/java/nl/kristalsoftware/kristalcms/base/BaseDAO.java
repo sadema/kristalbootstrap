@@ -15,12 +15,12 @@ public abstract class BaseDAO<T extends BaseEntity> {
     public T getEntity(String path) throws PathNotFoundException, CMSDataException{
         T entity = null;
         try {
-            entity = getMapper().getEntity(path);
+            entity = getFactory().createEntity(path);
         } catch (RepositoryException e) {
             throw new CMSDataException(e);
         }
         return entity;
     }
 
-    protected abstract BaseMapper<T> getMapper();
+    protected abstract BaseFactory<T> getFactory();
 }

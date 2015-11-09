@@ -1,14 +1,18 @@
 package nl.kristalsoftware.kristalcms.template;
 
 import nl.kristalsoftware.kristalcms.base.BaseController;
-import nl.kristalsoftware.kristalcms.base.BaseDataService;
 import nl.kristalsoftware.kristalcms.base.BaseResource;
+import nl.kristalsoftware.kristalcms.templates.TemplatesRSDto;
+import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
+import org.jboss.resteasy.links.LinkResources;
 
 import javax.inject.Inject;
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.util.logging.Logger;
 
@@ -25,11 +29,18 @@ public class TemplateResource extends BaseResource<TemplateRSDto> {
     @Inject
     private TemplateController templateController;
 
+    @AddLinks
+    @LinkResources({
+            @LinkResource,
+            @LinkResource(value = TemplatesRSDto.class, rel = "template")
+    })
     @GET
     @Produces("text/html")
     @Path("{customerId}/templates/{templateId}")
     public String getTemplate(@PathParam("customerId") String customerId, @PathParam("templateId") String templateId, @Context UriInfo uriInfo) {
-        return super.getResourceType(uriInfo.getPath()).getTemplateContent();
+        TemplateRSDto templateRSDto = super.getResourceType(uriInfo.getPath());
+        templateRSDto.setCustomerId(customerId);
+        return templateRSDto.getTemplateContent();
     }
 
     /*

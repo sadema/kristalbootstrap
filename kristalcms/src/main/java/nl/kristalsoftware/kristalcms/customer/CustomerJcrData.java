@@ -2,7 +2,7 @@ package nl.kristalsoftware.kristalcms.customer;
 
 import nl.kristalsoftware.kristalcms.base.BaseJcrData;
 import nl.kristalsoftware.kristalcms.base.NodeJcrData;
-import nl.kristalsoftware.kristalcms.corejcr.property.JcrProperty;
+import nl.kristalsoftware.kristalcms.property.JcrProperty;
 
 import javax.inject.Inject;
 import javax.jcr.RepositoryException;

@@ -24,6 +24,10 @@ public class NodeJcrData {
         node = session.getNode(path);
     }
 
+    public Node getNode() {
+        return node;
+    }
+
     public String getId() throws RepositoryException {
         return node.getName();
     }
