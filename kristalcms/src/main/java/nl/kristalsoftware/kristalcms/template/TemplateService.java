@@ -48,7 +48,7 @@ public class TemplateService extends BaseDataService<TemplateRSDto,TemplateEntit
         if (!nodeExists(session, buildPath(parentPath, data.getTemplateId()))) {
             Node templateNode = node.addNode(data.getTemplateId(), "nt:file");
             newPath = templateNode.getPath();
-            templateJcrData.setContent(templateNode, data.getTemplateContent());
+            templateJcrData.setValue(templateNode, data.getTemplateContent());
             session.save();
         }
         else {

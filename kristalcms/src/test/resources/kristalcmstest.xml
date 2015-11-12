@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sv:node xmlns:sv="http://www.jcp.org/jcr/sv/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
-         xmlns:jcr="http://www.jcp.org/jcr/1.0" sv:name="cms">
-    <sv:property sv:type="Name" sv:name="jcr:primaryType">
+<sv:node xmlns:mode="http://www.modeshape.org/1.0" xmlns:sv="http://www.jcp.org/jcr/sv/1.0"
+         xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+         xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" sv:name="cms">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>nt:unstructured</sv:value>
     </sv:property>
     <sv:node sv:name="prima">
-        <sv:property sv:type="Name" sv:name="jcr:primaryType">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
             <sv:value>nt:unstructured</sv:value>
-        </sv:property>
-        <sv:property sv:name="version" sv:type="String">
-            <sv:value>1.0</sv:value>
         </sv:property>
         <sv:property sv:name="city" sv:type="String">
             <sv:value>Nunspeet</sv:value>
+        </sv:property>
+        <sv:property sv:name="version" sv:type="String">
+            <sv:value>1.0</sv:value>
         </sv:property>
         <sv:node sv:name="templates">
             <sv:property sv:name="jcr:primaryType" sv:type="Name">
                 <sv:value>nt:unstructured</sv:value>
             </sv:property>
-        </sv:node>
-        <sv:node sv:name="pages">
-            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>nt:unstructured</sv:value>
-            </sv:property>
-            <sv:node sv:name="home">
+            <sv:node sv:name="main">
                 <sv:property sv:name="jcr:primaryType" sv:type="Name">
                     <sv:value>nt:file</sv:value>
                 </sv:property>
@@ -31,7 +28,7 @@
                     <sv:value>&lt;anonymous&gt;</sv:value>
                 </sv:property>
                 <sv:property sv:name="jcr:created" sv:type="Date">
-                    <sv:value>2015-08-17T19:14:02.092+02:00</sv:value>
+                    <sv:value>2015-10-18T01:00:12.493+02:00</sv:value>
                 </sv:property>
                 <sv:node sv:name="jcr:content">
                     <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -47,26 +44,31 @@
                         <sv:value>text/html</sv:value>
                     </sv:property>
                     <sv:property sv:name="jcr:lastModified" sv:type="Date">
-                        <sv:value>2015-08-17T19:14:02.092+02:00</sv:value>
+                        <sv:value>2015-10-18T01:00:12.493+02:00</sv:value>
                     </sv:property>
                     <sv:property sv:name="jcr:data" sv:type="Binary">
                         <sv:value>
-                            PGh0bWw+PGhlYWQ+PHRpdGxlPlRlc3Q8L3RpdGxlPjwvaGVhZD48Ym9keT48aDE+RGl0IGlzIGVlbiB0ZXN0PC9oMT48L2JvZHk+PC9odG1sPg==
+                            PCFET0NUWVBFIGh0bWw+PGh0bWwgbGFuZz0iZW4iPgo8aGVhZD4KICAgIDwhLS0gUmVxdWlyZWQgbWV0YSB0YWdzIGFsd2F5cyBjb21lIGZpcnN0IC0tPgogICAgPG1ldGEgY2hhcnNldD0idXRmLTgiPgogICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xIj4KICAgIDxtZXRhIGh0dHAtZXF1aXY9IngtdWEtY29tcGF0aWJsZSIgY29udGVudD0iaWU9ZWRnZSI+CgogICAgPCEtLSBCb290c3RyYXAgQ1NTIC0tPgogICAgPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSJodHRwczovL2Nkbi5yYXdnaXQuY29tL3R3YnMvYm9vdHN0cmFwL3Y0LWRldi9kaXN0L2Nzcy9ib290c3RyYXAuY3NzIj4KPC9oZWFkPgo8Ym9keT4KPGRpdiBjbGFzcz0iY29udGFpbmVyIj4KICAgIDxuYXYgY2xhc3M9Im5hdmJhciBuYXZiYXItbGlnaHQgYmctZmFkZWQiPgogICAgICAgIDxhIGNsYXNzPSJuYXZiYXItYnJhbmQiIGhyZWY9IiMiPk5hdmJhcjwvYT4KICAgIDwvbmF2PgogICAgPCNpZiBjb250ZW50P2hhc19jb250ZW50PgogICAgPGRpdiBjbGFzcz0icm93Ij4KICAgICAgICA8ZGl2IGNsYXNzPSJjb2wtc20tJHtjb250ZW50LmNhcmRJbmZvLm51bU9mQ29sbHMhNH0iPgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJjYXJkLWRlY2std3JhcHBlciI+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJjYXJkLWRlY2siPgogICAgICAgICAgICAgICAgPCNsaXN0IGNvbnRlbnQuY2FyZEluZm8uY2FyZENvbnRlbnQuY2FyZExpc3QgYXMgbGlzdD4KICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJjYXJkIj4KICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0iY2FyZC1ibG9jayI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8aDQgY2xhc3M9ImNhcmQtdGl0bGUiPiR7bGlzdC50aXRsZSF9PC9oND4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwjaWYgbGlzdC5zdWJ0aXRsZT9oYXNfY29udGVudD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8aDYgY2xhc3M9ImNhcmQtc3VidGl0bGUgdGV4dC1tdXRlZCI+JHtsaXN0LnN1YnRpdGxlIX08L2g2PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPC8jaWY+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8aW1nIHNyYz0iaW1nL21lbnVrYWFydC5qcGciIGFsdD0iQ2FyZCBpbWFnZSI+CgogICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJjYXJkLWJsb2NrIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwIGNsYXNzPSJjYXJkLXRleHQiPiR7bGlzdC50ZXh0IX0gPC9wPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGEgaHJlZj0iIyIgY2xhc3M9ImNhcmQtbGluayI+TGVlcyB2ZXJkZXI8L2E+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8YSBocmVmPSIjIiBjbGFzcz0iY2FyZC1saW5rIj5Bbm90aGVyIGxpbms8L2E+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgPC8jbGlzdD4KICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICAgPC8jaWY+CjwvZGl2PgoKPCEtLSBqUXVlcnkgZmlyc3QsIHRoZW4gQm9vdHN0cmFwIEpTLiAtLT4KPHNjcmlwdCBzcmM9Imh0dHBzOi8vYWpheC5nb29nbGVhcGlzLmNvbS9hamF4L2xpYnMvanF1ZXJ5LzIuMS40L2pxdWVyeS5taW4uanMiPjwvc2NyaXB0Pgo8c2NyaXB0IHNyYz0iaHR0cHM6Ly9jZG4ucmF3Z2l0LmNvbS90d2JzL2Jvb3RzdHJhcC92NC1kZXYvZGlzdC9qcy9ib290c3RyYXAuanMiPjwvc2NyaXB0Pgo8c2NyaXB0IHNyYz0iaHR0cHM6Ly9jZG5qcy5jbG91ZGZsYXJlLmNvbS9hamF4L2xpYnMvaG9sZGVyLzIuOC4yL2hvbGRlci5qcyI+PC9zY3JpcHQ+CjwvYm9keT4KPC9odG1sPg==
                         </sv:value>
                     </sv:property>
                 </sv:node>
             </sv:node>
         </sv:node>
+        <sv:node sv:name="pages">
+            <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                <sv:value>nt:unstructured</sv:value>
+            </sv:property>
+        </sv:node>
     </sv:node>
     <sv:node sv:name="kristalsoftware">
-        <sv:property sv:type="Name" sv:name="jcr:primaryType">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
             <sv:value>nt:unstructured</sv:value>
-        </sv:property>
-        <sv:property sv:name="version" sv:type="String">
-            <sv:value>1.0</sv:value>
         </sv:property>
         <sv:property sv:name="city" sv:type="String">
             <sv:value>Apeldoorn</sv:value>
+        </sv:property>
+        <sv:property sv:name="version" sv:type="String">
+            <sv:value>1.0</sv:value>
         </sv:property>
         <sv:node sv:name="templates">
             <sv:property sv:name="jcr:primaryType" sv:type="Name">

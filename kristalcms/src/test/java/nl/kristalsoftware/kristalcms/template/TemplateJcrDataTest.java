@@ -1,9 +1,11 @@
 package nl.kristalsoftware.kristalcms.template;
 
 import nl.kristalsoftware.kristalcms.main.BaseTest;
+import nl.kristalsoftware.kristalcms.property.JcrContentNode;
 import nl.kristalsoftware.kristalcms.property.JcrProperty;
-import nl.kristalsoftware.kristalcms.property.TextFileJcrProperty;
+import nl.kristalsoftware.kristalcms.property.TextFileJcrContentNode;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -12,9 +14,12 @@ import org.mockito.runners.MockitoJUnitRunner;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by sjoerdadema on 08/11/15.
@@ -27,7 +32,7 @@ public class TemplateJcrDataTest extends BaseTest {
     private TemplateJcrData cut;
 
     @Mock
-    private JcrProperty<String> content;
+    private JcrContentNode<String> content = new TextFileJcrContentNode();
 
     private Node node;
 
@@ -39,39 +44,39 @@ public class TemplateJcrDataTest extends BaseTest {
     public void setUp() throws Exception {
         super.before();
         cut = new TemplateJcrData();
-        content = new TextFileJcrProperty();
         cut.content = content;
-        try {
-            this.node = session.getNode("/cms/prima/templates/home");
-        } catch (RepositoryException e) {
-        }
-        assertNotNull(session);
-    }
-
-    @Test
-    public void testSessionExists() {
         assertNotNull(session);
     }
 
     @Test
     public void testGetContent() throws Exception {
+        node = session.getNode("/cms/prima/templates/main");
+        cut.setNode(node);
         cut.getContent();
-        verify(content).getPropertyValue(node, "content");
+        verify(content).getValue(node);
     }
 
     @Test
     public void testSetContent() throws Exception {
+        node = session.getNode("/cms/prima/templates");
+        Node newNode = node.addNode("new_id", "nt:file");
+        cut.setNode(newNode);
         cut.setContent(ANY_CONTENT);
-        verify(content).setPropertyValue(node, "content", anyString());
+        verify(content).setValue(newNode, ANY_CONTENT);
     }
 
     @Test
     public void testGetNode() throws Exception {
-
+        node = session.getNode("/cms/prima/templates/main");
+        cut.setNode(node);
+        assertThat(cut.getNode(), is(node));
     }
 
     @Test
     public void testGetId() throws Exception {
-
+        node = session.getNode("/cms/prima/templates/main");
+        cut.setNode(node);
+        String id = cut.getId();
+        assertThat(id, is("main"));
     }
 }

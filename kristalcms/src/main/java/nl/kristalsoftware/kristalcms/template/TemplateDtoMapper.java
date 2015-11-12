@@ -24,7 +24,7 @@ public class TemplateDtoMapper { //implements BaseDtoMapper<TemplateRSDto,Templa
         templateRSDto.setTemplateId(templateUriInfo.getTemplateId());
         Node htmlNode = node.getNode(TemplateService.HTMLNODENAME);
         Node contentNode = htmlNode.getNode(TemplateService.CONTENTNODENAME);
-        templateRSDto.setTemplateContent(templateJcrData.getContent(contentNode));
+        templateRSDto.setTemplateContent(templateJcrData.getValue(contentNode));
         return templateRSDto;
     }
 
@@ -32,7 +32,7 @@ public class TemplateDtoMapper { //implements BaseDtoMapper<TemplateRSDto,Templa
     public void setFieldsInRepository(Node node, TemplateRSDto data) throws PathNotFoundException, ItemExistsException, RepositoryException {
         Node htmlNode = node.getNode(TemplateService.HTMLNODENAME);
         Node contentNode = htmlNode.getNode(TemplateService.CONTENTNODENAME);
-        templateJcrData.setContent(contentNode, data.getTemplateContent());
+        templateJcrData.setValue(contentNode, data.getTemplateContent());
     }
     */
 }

@@ -9,7 +9,7 @@ import javax.jcr.RepositoryException;
  */
 public interface BaseJcrData {
 
-    void setNode(String path) throws PathNotFoundException, RepositoryException;
+    void setNode(Node node) throws RepositoryException;
     Node getNode();
 
 }

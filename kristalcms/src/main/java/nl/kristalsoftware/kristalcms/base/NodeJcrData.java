@@ -15,13 +15,18 @@ public class NodeJcrData {
 
     protected Node node = null;
 
-    @Inject
-    private Session session;
+    //@Inject
+    //protected Session session;
 
     protected NodeJcrData() {}
 
+    /*
     public void setNode(String path) throws PathNotFoundException, RepositoryException {
         node = session.getNode(path);
+    }
+    */
+    public void setNode(Node node) {
+        this.node = node;
     }
 
     public Node getNode() {
@@ -29,7 +34,14 @@ public class NodeJcrData {
     }
 
     public String getId() throws RepositoryException {
-        return node.getName();
+        String id = null;
+        if (node != null) {
+            id = node.getName();
+        }
+        else {
+            throw new RepositoryException("node is null");
+        }
+        return id;
     }
 
 }

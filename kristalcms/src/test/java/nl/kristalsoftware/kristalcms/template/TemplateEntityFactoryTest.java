@@ -1,5 +1,7 @@
 package nl.kristalsoftware.kristalcms.template;
 
+import nl.kristalsoftware.kristalcms.base.BaseFactory;
+import nl.kristalsoftware.kristalcms.main.BaseTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,33 +19,38 @@ import static org.mockito.Mockito.when;
  * Created by sjoerdadema on 06/11/15.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class TemplateFactoryTest {
+public class TemplateEntityFactoryTest extends BaseTest{
 
-    @InjectMocks
-    private TemplateFactory cut;
+    //@InjectMocks
+    private BaseFactory<TemplateEntity> cut;
 
     @Mock
     private TemplateJcrData jcrData;
 
+    public TemplateEntityFactoryTest() {
+        super("kristalcmstest.xml");
+    }
+
     @Before
     public void setUp() throws Exception {
-        cut = new TemplateFactory();
-        cut.jcrData = jcrData;
+        super.before();
+        cut = new TemplateEntityFactory(session, jcrData);
+        //cut.jcrData = jcrData;
     }
 
     @Test
     public void testCreateEntity() throws Exception {
         when(jcrData.getId()).thenReturn("home");
         when(jcrData.getContent()).thenReturn("<body></body>");
-        TemplateEntity templateEntity = cut.createEntity();
+        TemplateEntity templateEntity = cut.createEntity("/cms/prima/templates/main");
         assertNotNull(templateEntity);
         assertThat(templateEntity.getId(), is("home"));
         assertThat(templateEntity.getTemplateContent(), is("<body></body>"));
+        //TODO Sjoerd: verify(jcrData).setNode(node)
     }
 
-    /*
-    public void testCreateEntityList() throws Exception {
-        List<String> templateEntityList = cut.createEntityPathList();
+    public void testCreateEntityPathList() throws Exception {
+        List<String> templateEntityList = cut.createEntityPathList("/cms/prima/templates");
     }
-    */
+
 }

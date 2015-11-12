@@ -41,7 +41,7 @@ public class PageResource extends BaseResource<PageRSDto> {
         Response response = null;
         /*
         String templateName = createPageRSDto.getTemplateName();
-        Map content = this.getContent();
+        Map content = this.getValue();
         try {
             String htmlPage = freemarkerService.createHTMLPage(templateName, content);
             PageRSDto pageRSDto = new PageRSDto(createPageRSDto.getPageId());

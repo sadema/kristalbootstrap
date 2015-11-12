@@ -1,7 +1,7 @@
 package nl.kristalsoftware.kristalcms.page;
 
 import nl.kristalsoftware.kristalcms.annotation.TextFile;
-import nl.kristalsoftware.kristalcms.property.JcrProperty;
+import nl.kristalsoftware.kristalcms.property.JcrContentNode;
 
 import javax.inject.Inject;
 import javax.jcr.Node;
@@ -14,17 +14,17 @@ public class PageJcrData {
 
     @Inject
     @TextFile
-    private JcrProperty<String> content;
+    private JcrContentNode<String> content;
 
     public String getPageId(Node node) throws RepositoryException {
         return node.getName();
     }
 
     public String getContent(Node node) throws RepositoryException {
-        return content.getPropertyValue(node, "content");
+        return content.getValue(node);
     }
 
     public void setContent(Node node, String value) throws RepositoryException {
-        content.setPropertyValue(node, "content", value);
+        content.setValue(node, value);
     }
 }

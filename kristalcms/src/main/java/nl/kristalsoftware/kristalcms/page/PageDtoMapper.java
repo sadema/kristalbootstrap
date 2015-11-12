@@ -22,7 +22,7 @@ public class PageDtoMapper { //implements BaseDtoMapper<PageRSDto,PageUriInfo> {
         PageRSDto pageRSDto = new PageRSDto();
         pageRSDto.setCustomerId(uriInfo.getCustomerId());
         pageRSDto.setPageId(uriInfo.getPageId());
-        pageRSDto.setPageContent(pageJcrData.getContent(node));
+        pageRSDto.setPageContent(pageJcrData.getValue(node));
         return pageRSDto;
     }
 

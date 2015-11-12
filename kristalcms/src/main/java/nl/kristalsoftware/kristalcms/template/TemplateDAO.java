@@ -11,10 +11,10 @@ import javax.inject.Inject;
 public class TemplateDAO extends BaseDAO<TemplateEntity> {
 
     @Inject
-    private TemplateFactory templateFactory;
+    private TemplateEntityFactory templateEntityFactory;
 
     @Override
     protected BaseFactory<TemplateEntity> getFactory() {
-        return templateFactory;
+        return templateEntityFactory;
     }
 }

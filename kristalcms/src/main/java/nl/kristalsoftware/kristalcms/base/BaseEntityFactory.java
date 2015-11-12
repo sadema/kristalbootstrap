@@ -6,19 +6,27 @@ import javax.inject.Inject;
 import javax.jcr.Node;
 import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
+import javax.jcr.Session;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by sjoerdadema on 29/10/15.
  */
-public abstract class BaseNodeMapper<T extends BaseEntity> {
+public abstract class BaseEntityFactory<T extends BaseEntity> {
+
+    private Session session;
 
     @Inject
     private JcrList jcrList;
 
+    protected BaseEntityFactory(Session session) {
+        this.session = session;
+    }
+
     public T createEntity(String path) throws PathNotFoundException, RepositoryException {
-        getJcrData().setNode(path);
+        Node node = session.getNode(path);
+        getJcrData().setNode(node);
         getBaseEntity().setPath(path);
         return createEntity();
     }

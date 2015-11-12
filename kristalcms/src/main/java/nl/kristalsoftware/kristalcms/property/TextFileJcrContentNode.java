@@ -11,26 +11,26 @@ import java.util.logging.Logger;
  * Created by sjoerdadema on 16-09-15.
  */
 @TextFile
-public class TextFileJcrProperty implements JcrProperty<String> {
+public class TextFileJcrContentNode implements JcrContentNode<String> {
 
     @Inject
     Logger logger;
 
     @Override
-    public String getPropertyValue(Node node, String propertyName) throws RepositoryException {
+    public String getValue(Node node) throws RepositoryException {
         String value = null;
         try {
             Node contentNode = node.getNode("jcr:content");
             Property dataProperty = contentNode.getProperty("jcr:data");
             value = dataProperty.getString();
         } catch (PathNotFoundException e) {
-            logger.info("Property " + propertyName + " does not exist");
+            logger.info("Contentnode does not exist");
         }
         return value;
     }
 
     @Override
-    public void setPropertyValue(Node node, String propertyName, String content) throws RepositoryException {
+    public void setValue(Node node, String content) throws RepositoryException {
         if (node != null) {
             ByteArrayInputStream is = new ByteArrayInputStream(content.getBytes());
             Binary binaryData = node.getSession().getValueFactory().createBinary(is);
