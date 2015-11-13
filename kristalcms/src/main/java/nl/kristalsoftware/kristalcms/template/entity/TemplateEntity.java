@@ -1,4 +1,4 @@
-package nl.kristalsoftware.kristalcms.template;
+package nl.kristalsoftware.kristalcms.template.entity;
 
 import nl.kristalsoftware.kristalcms.base.BaseEntity;
 

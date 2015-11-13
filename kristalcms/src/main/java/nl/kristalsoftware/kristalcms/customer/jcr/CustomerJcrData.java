@@ -1,4 +1,4 @@
-package nl.kristalsoftware.kristalcms.customer;
+package nl.kristalsoftware.kristalcms.customer.jcr;
 
 import nl.kristalsoftware.kristalcms.base.BaseJcrData;
 import nl.kristalsoftware.kristalcms.base.NodeJcrData;

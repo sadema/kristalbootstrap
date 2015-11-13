@@ -1,6 +1,6 @@
 package nl.kristalsoftware.kristalcms.pages;
 
-import nl.kristalsoftware.kristalcms.customer.CustomerRSDto;
+import nl.kristalsoftware.kristalcms.customer.rest.CustomerRSDto;
 import nl.kristalsoftware.kristalcms.page.PageRSDto;
 import org.jboss.resteasy.links.ParentResource;
 import org.jboss.resteasy.links.RESTServiceDiscovery;

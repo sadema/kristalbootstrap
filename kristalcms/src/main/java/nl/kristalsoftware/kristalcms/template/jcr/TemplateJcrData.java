@@ -1,4 +1,4 @@
-package nl.kristalsoftware.kristalcms.template;
+package nl.kristalsoftware.kristalcms.template.jcr;
 
 import nl.kristalsoftware.kristalcms.annotation.TextFile;
 import nl.kristalsoftware.kristalcms.base.BaseJcrData;

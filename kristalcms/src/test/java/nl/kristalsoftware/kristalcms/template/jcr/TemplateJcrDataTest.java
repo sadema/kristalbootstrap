@@ -1,25 +1,21 @@
-package nl.kristalsoftware.kristalcms.template;
+package nl.kristalsoftware.kristalcms.template.jcr;
 
 import nl.kristalsoftware.kristalcms.main.BaseTest;
 import nl.kristalsoftware.kristalcms.property.JcrContentNode;
-import nl.kristalsoftware.kristalcms.property.JcrProperty;
 import nl.kristalsoftware.kristalcms.property.TextFileJcrContentNode;
+import nl.kristalsoftware.kristalcms.template.jcr.TemplateJcrData;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.jcr.Node;
-import javax.jcr.RepositoryException;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 /**
  * Created by sjoerdadema on 08/11/15.

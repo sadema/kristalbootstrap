@@ -1,4 +1,4 @@
-package nl.kristalsoftware.kristalcms.customer;
+package nl.kristalsoftware.kristalcms.customer.entity;
 
 import nl.kristalsoftware.kristalcms.base.BaseEntity;
 

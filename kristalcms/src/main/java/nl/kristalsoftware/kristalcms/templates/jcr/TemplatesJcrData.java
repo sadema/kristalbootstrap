@@ -1,4 +1,4 @@
-package nl.kristalsoftware.kristalcms.templates;
+package nl.kristalsoftware.kristalcms.templates.jcr;
 
 import nl.kristalsoftware.kristalcms.base.BaseJcrData;
 import nl.kristalsoftware.kristalcms.base.NodeJcrData;
@@ -14,10 +14,14 @@ import java.util.List;
  */
 public class TemplatesJcrData extends NodeJcrData implements BaseJcrData {
 
-    /*
     @Inject
     private JcrList nodeList;
 
+    public JcrList getJcrList() {
+        return nodeList;
+    }
+
+    /*
     public List<Node> getTemplateList() throws RepositoryException {
         return nodeList.getList(node);
     }

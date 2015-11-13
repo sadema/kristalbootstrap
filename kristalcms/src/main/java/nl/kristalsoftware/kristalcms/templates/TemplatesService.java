@@ -2,9 +2,10 @@ package nl.kristalsoftware.kristalcms.templates;
 
 import nl.kristalsoftware.kristalcms.base.*;
 import nl.kristalsoftware.kristalcms.main.CMSDataException;
-import nl.kristalsoftware.kristalcms.template.TemplateDAO;
-import nl.kristalsoftware.kristalcms.template.TemplateRSDto;
+import nl.kristalsoftware.kristalcms.template.rest.TemplateRSDto;
 import nl.kristalsoftware.kristalcms.template.TemplateService;
+import nl.kristalsoftware.kristalcms.templates.entity.TemplatesEntity;
+import nl.kristalsoftware.kristalcms.templates.rest.TemplatesRSDto;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;

@@ -1,7 +1,6 @@
-package nl.kristalsoftware.kristalcms.templates;
+package nl.kristalsoftware.kristalcms.templates.entity;
 
 import nl.kristalsoftware.kristalcms.base.BaseEntity;
-import nl.kristalsoftware.kristalcms.template.TemplateEntity;
 
 import java.util.ArrayList;
 import java.util.List;

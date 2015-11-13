@@ -1,8 +1,9 @@
-package nl.kristalsoftware.kristalcms.template;
+package nl.kristalsoftware.kristalcms.template.rest;
 
 import nl.kristalsoftware.kristalcms.base.BaseController;
 import nl.kristalsoftware.kristalcms.base.BaseResource;
-import nl.kristalsoftware.kristalcms.templates.TemplatesRSDto;
+import nl.kristalsoftware.kristalcms.template.TemplateController;
+import nl.kristalsoftware.kristalcms.templates.rest.TemplatesRSDto;
 import org.jboss.resteasy.links.AddLinks;
 import org.jboss.resteasy.links.LinkResource;
 import org.jboss.resteasy.links.LinkResources;

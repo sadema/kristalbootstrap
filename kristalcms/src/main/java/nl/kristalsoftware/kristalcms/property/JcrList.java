@@ -2,6 +2,7 @@ package nl.kristalsoftware.kristalcms.property;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
+import javax.jcr.Session;
 import java.util.List;
 
 /**
@@ -9,6 +10,6 @@ import java.util.List;
  */
 public interface JcrList {
 
-    public List<Node> getList(String parentPath) throws RepositoryException;
+    public List<Node> getList(Session session, String parentPath) throws RepositoryException;
 
 }

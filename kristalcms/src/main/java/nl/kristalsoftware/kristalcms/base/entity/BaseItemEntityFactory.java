@@ -1,4 +1,4 @@
-package nl.kristalsoftware.kristalcms.base;
+package nl.kristalsoftware.kristalcms.base.entity;
 
 import nl.kristalsoftware.kristalcms.main.CMSDataException;
 
@@ -9,8 +9,8 @@ import java.util.List;
 /**
  * Created by sjoerdadema on 29/10/15.
  */
-public interface BaseFactory<T> {
+public interface BaseItemEntityFactory<T> extends BaseRootItemEntityFactory<T> {
 
-    T createEntity(String path) throws PathNotFoundException, RepositoryException;
     List<String> createEntityPathList(String parentPath) throws RepositoryException;
+
 }

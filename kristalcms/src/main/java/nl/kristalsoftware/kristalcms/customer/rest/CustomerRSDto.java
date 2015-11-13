@@ -1,5 +1,6 @@
-package nl.kristalsoftware.kristalcms.customer;
+package nl.kristalsoftware.kristalcms.customer.rest;
 
+import nl.kristalsoftware.kristalcms.customer.entity.CustomerEntity;
 import org.jboss.resteasy.links.RESTServiceDiscovery;
 
 import javax.xml.bind.annotation.*;

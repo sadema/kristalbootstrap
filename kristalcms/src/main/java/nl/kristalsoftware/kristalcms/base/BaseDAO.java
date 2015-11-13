@@ -1,5 +1,7 @@
 package nl.kristalsoftware.kristalcms.base;
 
+import nl.kristalsoftware.kristalcms.base.entity.BaseItemEntityFactory;
+import nl.kristalsoftware.kristalcms.base.entity.BaseRootItemEntityFactory;
 import nl.kristalsoftware.kristalcms.main.CMSDataException;
 
 import javax.jcr.PathNotFoundException;
@@ -22,5 +24,5 @@ public abstract class BaseDAO<T extends BaseEntity> {
         return entity;
     }
 
-    protected abstract BaseFactory<T> getFactory();
+    protected abstract BaseRootItemEntityFactory<T> getFactory();
 }

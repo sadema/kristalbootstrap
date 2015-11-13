@@ -1,18 +1,22 @@
 package nl.kristalsoftware.kristalcms.template;
 
-import nl.kristalsoftware.kristalcms.base.BaseFactory;
+import nl.kristalsoftware.kristalcms.base.entity.BaseItemEntityFactory;
+import nl.kristalsoftware.kristalcms.base.entity.BaseRootItemEntityFactory;
 import nl.kristalsoftware.kristalcms.main.BaseTest;
+import nl.kristalsoftware.kristalcms.template.entity.TemplateEntity;
+import nl.kristalsoftware.kristalcms.template.entity.TemplateEntityFactory;
+import nl.kristalsoftware.kristalcms.template.jcr.TemplateJcrData;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
 /**
@@ -22,7 +26,7 @@ import static org.mockito.Mockito.when;
 public class TemplateEntityFactoryTest extends BaseTest{
 
     //@InjectMocks
-    private BaseFactory<TemplateEntity> cut;
+    private BaseItemEntityFactory<TemplateEntity> cut;
 
     @Mock
     private TemplateJcrData jcrData;

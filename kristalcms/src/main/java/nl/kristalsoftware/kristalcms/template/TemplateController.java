@@ -2,8 +2,8 @@ package nl.kristalsoftware.kristalcms.template;
 
 import nl.kristalsoftware.kristalcms.base.BaseController;
 import nl.kristalsoftware.kristalcms.base.BaseDataService;
-import nl.kristalsoftware.kristalcms.base.BaseEntity;
-import nl.kristalsoftware.kristalcms.customer.CustomerRSDto;
+import nl.kristalsoftware.kristalcms.template.entity.TemplateEntity;
+import nl.kristalsoftware.kristalcms.template.rest.TemplateRSDto;
 
 import javax.inject.Inject;
 
@@ -16,7 +16,7 @@ public class TemplateController extends BaseController<TemplateRSDto> {
     private TemplateService templateService;
 
     @Override
-    protected <E extends BaseEntity> BaseDataService<TemplateRSDto, E> getResourceTypeService() {
-        return null;
+    protected BaseDataService<TemplateRSDto, TemplateEntity> getResourceTypeService() {
+        return templateService;
     }
 }

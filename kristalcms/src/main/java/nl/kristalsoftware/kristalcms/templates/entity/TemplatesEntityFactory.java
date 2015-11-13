@@ -1,10 +1,10 @@
-package nl.kristalsoftware.kristalcms.templates;
+package nl.kristalsoftware.kristalcms.templates.entity;
 
 import nl.kristalsoftware.kristalcms.base.BaseEntity;
 import nl.kristalsoftware.kristalcms.base.BaseJcrData;
-import nl.kristalsoftware.kristalcms.base.BaseFactory;
-import nl.kristalsoftware.kristalcms.base.BaseEntityFactory;
-import nl.kristalsoftware.kristalcms.template.TemplateEntityFactory;
+import nl.kristalsoftware.kristalcms.base.entity.RootItemEntityFactory;
+import nl.kristalsoftware.kristalcms.template.entity.TemplateEntityFactory;
+import nl.kristalsoftware.kristalcms.templates.jcr.TemplatesJcrData;
 
 import javax.inject.Inject;
 import javax.jcr.RepositoryException;
@@ -14,23 +14,24 @@ import java.util.List;
 /**
  * Created by sjoerdadema on 29/10/15.
  */
-public class TemplatesFactory extends BaseEntityFactory<TemplatesEntity> implements BaseFactory<TemplatesEntity> {
+public class TemplatesEntityFactory extends RootItemEntityFactory<TemplatesEntity> {
 
     private TemplatesEntity templatesEntity;
 
-    @Inject
     private TemplatesJcrData jcrData;
 
     @Inject
     private TemplateEntityFactory templateEntityFactory;
 
     @Inject
-    public TemplatesFactory(Session session) {
+    public TemplatesEntityFactory(Session session, TemplatesJcrData templatesJcrData) {
         super(session);
         templatesEntity = new TemplatesEntity();
+        jcrData = templatesJcrData;
     }
 
     protected TemplatesEntity createEntity() throws RepositoryException {
+        templatesEntity.setId(jcrData.getId());
         List<String> templatePathList = templateEntityFactory.createEntityPathList(getPath());
         templatesEntity.setTemplateEntityList(templatePathList);
         return templatesEntity;

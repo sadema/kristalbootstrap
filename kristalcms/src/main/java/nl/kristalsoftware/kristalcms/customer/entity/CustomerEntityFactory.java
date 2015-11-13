@@ -1,28 +1,31 @@
-package nl.kristalsoftware.kristalcms.customer;
+package nl.kristalsoftware.kristalcms.customer.entity;
 
 import nl.kristalsoftware.kristalcms.base.BaseEntity;
+import nl.kristalsoftware.kristalcms.base.entity.BaseItemEntityFactory;
 import nl.kristalsoftware.kristalcms.base.BaseJcrData;
-import nl.kristalsoftware.kristalcms.base.BaseFactory;
-import nl.kristalsoftware.kristalcms.base.BaseEntityFactory;
+import nl.kristalsoftware.kristalcms.base.entity.ItemEntityFactory;
+import nl.kristalsoftware.kristalcms.customer.jcr.CustomerJcrData;
 
 import javax.inject.Inject;
+import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import java.util.List;
 
 /**
  * Created by sjoerdadema on 29/10/15.
  */
-public class CustomerFactory extends BaseEntityFactory<CustomerEntity> implements BaseFactory<CustomerEntity> {
+public class CustomerEntityFactory extends ItemEntityFactory<CustomerEntity> {
 
     private final CustomerEntity customerEntity;
 
-    @Inject
     private CustomerJcrData jcrData;
 
     @Inject
-    public CustomerFactory(Session session) {
+    public CustomerEntityFactory(Session session, CustomerJcrData customerJcrData) {
         super(session);
         customerEntity = new CustomerEntity();
+        jcrData = customerJcrData;
     }
 
     protected CustomerEntity createEntity() throws RepositoryException {
@@ -35,6 +38,11 @@ public class CustomerFactory extends BaseEntityFactory<CustomerEntity> implement
     @Override
     public BaseJcrData getJcrData() {
         return jcrData;
+    }
+
+    @Override
+    protected List<Node> getJcrNodeList(Session session, String parentPath) throws RepositoryException {
+        return null;
     }
 
     @Override

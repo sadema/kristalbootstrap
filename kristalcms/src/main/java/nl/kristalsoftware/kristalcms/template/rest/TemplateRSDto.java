@@ -1,6 +1,8 @@
-package nl.kristalsoftware.kristalcms.template;
+package nl.kristalsoftware.kristalcms.template.rest;
 
-import nl.kristalsoftware.kristalcms.customer.CustomerRSDto;
+import nl.kristalsoftware.kristalcms.customer.rest.CustomerRSDto;
+import nl.kristalsoftware.kristalcms.template.entity.TemplateEntity;
+import nl.kristalsoftware.kristalcms.templates.rest.TemplatesRSDto;
 import org.jboss.resteasy.links.ParentResource;
 import org.jboss.resteasy.links.RESTServiceDiscovery;
 
@@ -14,11 +16,13 @@ import javax.xml.bind.annotation.*;
 public class TemplateRSDto {
 
     @ParentResource
+    private TemplatesRSDto templatesRSDto = new TemplatesRSDto();
+
     private CustomerRSDto customerRSDto = new CustomerRSDto();
 
     @XmlID
     @XmlAttribute(name="id")
-    private String templateId;
+    private String templateId = "main";
 
     @XmlElement(name="content")
     private String templateContent;
@@ -36,7 +40,7 @@ public class TemplateRSDto {
         return templateId;
     }
 
-    public void setTemplateId(String templateId) {
+    private void setTemplateId(String templateId) {
         this.templateId = templateId;
     }
 
@@ -44,7 +48,13 @@ public class TemplateRSDto {
         return templateContent;
     }
 
-    public void setTemplateContent(String templateContent) {
+    private void setTemplateContent(String templateContent) {
         this.templateContent = templateContent;
     }
+
+    public void setTemplateEntity(TemplateEntity templateEntity) {
+        setTemplateId(templateEntity.getId());
+        setTemplateContent(templateEntity.getTemplateContent());
+    }
+
 }

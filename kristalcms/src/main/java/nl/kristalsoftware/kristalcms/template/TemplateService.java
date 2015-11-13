@@ -1,6 +1,8 @@
 package nl.kristalsoftware.kristalcms.template;
 
 import nl.kristalsoftware.kristalcms.base.*;
+import nl.kristalsoftware.kristalcms.template.entity.TemplateEntity;
+import nl.kristalsoftware.kristalcms.template.rest.TemplateRSDto;
 
 import javax.inject.Inject;
 
@@ -18,6 +20,7 @@ public class TemplateService extends BaseDataService<TemplateRSDto,TemplateEntit
     @Override
     protected TemplateRSDto setEntity(TemplateEntity entity) {
         TemplateRSDto templateRSDto = new TemplateRSDto();
+        templateRSDto.setTemplateEntity(entity);
         return templateRSDto;
     }
 
