@@ -27,11 +27,11 @@ public class TemplatesResource extends BaseResource<TemplatesRSDto> {
     @Inject
     private BaseController<TemplatesRSDto> templatesController;
 
-    @AddLinks
-    @LinkResources({
-            @LinkResource,
-            @LinkResource(value = CustomerRSDto.class, rel = "templates")
-    })
+//    @AddLinks
+//    @LinkResources({
+//            @LinkResource,
+//            @LinkResource(value = CustomerRSDto.class, rel = "templates")
+//    })
     @GET
     @Path("{customerId}/templates")
     public TemplatesRSDto getTemplates(@PathParam("customerId") String customerId, @Context UriInfo uriInfo) {

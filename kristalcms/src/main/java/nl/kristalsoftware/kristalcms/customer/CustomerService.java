@@ -4,6 +4,7 @@ import nl.kristalsoftware.kristalcms.base.BaseDAO;
 import nl.kristalsoftware.kristalcms.base.BaseDataService;
 import nl.kristalsoftware.kristalcms.base.BaseDtoMapper;
 import nl.kristalsoftware.kristalcms.base.DataService;
+import nl.kristalsoftware.kristalcms.customer.CustomerDAO;
 import nl.kristalsoftware.kristalcms.customer.entity.CustomerEntity;
 import nl.kristalsoftware.kristalcms.customer.rest.CustomerRSDto;
 

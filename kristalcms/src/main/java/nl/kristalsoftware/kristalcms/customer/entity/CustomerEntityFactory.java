@@ -5,6 +5,8 @@ import nl.kristalsoftware.kristalcms.base.entity.BaseItemEntityFactory;
 import nl.kristalsoftware.kristalcms.base.BaseJcrData;
 import nl.kristalsoftware.kristalcms.base.entity.ItemEntityFactory;
 import nl.kristalsoftware.kristalcms.customer.jcr.CustomerJcrData;
+import nl.kristalsoftware.kristalcms.property.JcrList;
+import nl.kristalsoftware.kristalcms.property.JcrNodeList;
 
 import javax.inject.Inject;
 import javax.jcr.Node;
@@ -42,7 +44,9 @@ public class CustomerEntityFactory extends ItemEntityFactory<CustomerEntity> {
 
     @Override
     protected List<Node> getJcrNodeList(Session session, String parentPath) throws RepositoryException {
-        return null;
+
+        JcrList jcrList = new JcrNodeList();
+        return jcrList.getList(session, parentPath);
     }
 
     @Override
